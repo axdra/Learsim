@@ -17,13 +17,22 @@ def drag(x,y,dur):
     return True
 def popout(x,y):
     print(f'Popping out window at {x},{y}')  
-    pyautogui.keyDown('shift')      
-    pyautogui.click(x=x,y=y)
-    pyautogui.keyUp('altright')
+    pyautogui.keyDown('i')   
+    pyautogui.moveTo(x=x,y=y)
+    time.sleep(0.01)   
+    pyautogui.mouseDown(button='left')
+    time.sleep(0.01)  
+    pyautogui.mouseUp(button='left')
+    time.sleep(0.01)   
+    pyautogui.keyUp('i')
     return True
 def mouseClick(x,y,btn):
     print(f'Pressing {btn} click at {x},{y}')
-    pyautogui.click(x=x,y=y,button=btn)
+    pyautogui.moveTo(x=x,y=y)
+    time.sleep(0.01)   
+    pyautogui.mouseDown(button='left')
+    time.sleep(0.01)  
+    pyautogui.mouseUp(button='left')
     return True
 def keyPress(btn,dur):
     if(dur == 0):
@@ -41,8 +50,11 @@ def delay(dur):
     time.sleep(dur)
     return True
 def combKeyPress(btn1,btn2):
+    print(f'Pressing for {btn1} and {btn2}')
     pyautogui.keyDown(btn1)
+    time.sleep(0.1) 
     pyautogui.press(btn2)
+    time.sleep(0.1) 
     pyautogui.keyUp(btn1)
     return True
 
@@ -61,3 +73,4 @@ for step in steps['steps']:
         delay(step['duration'])
     elif step['type'] == "combinationPress":
         combKeyPress(step['key1'],step['key2'])
+#
