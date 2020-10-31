@@ -101,19 +101,23 @@ def doAuto():
 
 def ReadMemory(Proc,ProcModule):
     value = 'NaN'
-    while True:
-        testread = Proc.read_int(ProcModule+  0x3592528)
-        
-        if(testread == 256 and testread != value and value == 0):
-            doAuto()
-            value = testread
-            print("Detected Cockpit")
-        elif(testread == 0 and testread != value):
-            value = 0
-            print("Detected No Cockpit")
-        else:
-            value = testread
-        time.sleep(1)    
+    try:
+        while True:
+            testread = Proc.read_int(ProcModule+  0x3592528)
+            
+            if(testread == 256 and testread != value and value == 0):
+                doAuto()
+                value = testread
+                print("Detected Cockpit")
+            elif(testread == 0 and testread != value):
+                value = 0
+                print("Detected No Cockpit")
+            else:
+                value = testread
+            time.sleep(1)    
+    except:
+        return
+   
     
         
     
@@ -140,13 +144,17 @@ def main():
             tray_icon.show()
             tray_icon.setNewToolTip(f"Reading memory @ {hex(client+  0x3592528)}")
             ReadMemory(pm,client)
-
+            tray_icon.hide()
+            tray_icon = SystemTrayIcon(QtGui.QIcon("icon.png"),w)
+            tray_icon.show()
+            tray_icon.setNewToolTip(f"Not Monitoring Memory")
 
         except pymem.exception.ProcessNotFound:
             print("Could not attach to FS2020, is it running?")
             print("Testing in 10 seconds again...")
             time.sleep(10)
             pass
+
 
 if __name__ == '__main__':
     main()
