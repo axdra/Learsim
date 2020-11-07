@@ -7,8 +7,10 @@ import json
 import time
 import os
 import sys
+import threading
 from PySide2 import QtWidgets, QtGui
 from os import system, name 
+
 screenWidht, screenHeight = pyautogui.size()
 configLocation = "config.json"
 testADR = (0x3592528)
@@ -18,15 +20,48 @@ testADR = (0x3592528)
 class SystemTrayIcon(QtWidgets.QSystemTrayIcon):
     def __init__(self,icon,parent=None):
         QtWidgets.QSystemTrayIcon.__init__(self,icon,parent)
-        self.setToolTip("Not Monitoring Memory")
+        menu = QtWidgets.QMenu(parent)
 
-    def onTrayIconActivated(self,reason):
+        toggleMemoryRead = menu.addAction("Toggle Memory Reading")
+        toggleMemoryRead.triggered.connect(self.toggleReading)
+        
+        openConfig = menu.addAction("Open Configuration")
+        openConfig.triggered.connect(self.open_config)
+
+
+
+        exitApp = menu.addAction("Exit")
+        exitApp.triggered.connect(self.exit)
+
+
+        menu.addSeparator()
+        self.setContextMenu(menu)
+        self.activated.connect(self.onTrayIconActivated)
+
+    def onTrayIconActivated(self, reason):
+        """
+        This function will trigger function on click or double click
+        :param reason:
+        :return:
+        """
         if reason == self.DoubleClick:
-            self.openConfig()
-    def openConfig(self):
-        os.system(f"code {configLocation}")
+            self.open_notepad()
+        # if reason == self.Trigger:
+        #     self.open_notepad()
+    def exit(self, reason):
+        self.thread.exitThread()
+        sys.exit()
+    def setThread(self, thread):
+        self.thread = thread
+    def open_config(self):
+        os.system('open config.json')
+
+    def toggleReading(self):
+        self.thread.togglePauseReading()
     def setNewToolTip(self, tt):
         self.setToolTip(tt)
+    def setNewIcon(self,icon):
+        self.setIcon(icon)
 
 
 f = open(configLocation, "r")
@@ -99,28 +134,75 @@ def doAuto():
         elif step['type'] == "combinationPress":
             combKeyPress(step['key1'],step['key2'])
 
-def ReadMemory(Proc,ProcModule):
-    value = 'NaN'
-    try:
-        while True:
-            testread = Proc.read_int(ProcModule+  0x3592528)
-            
-            if(testread == 256 and testread != value and value == 0):
-                doAuto()
-                value = testread
-                print("Detected Cockpit")
-            elif(testread == 0 and testread != value):
-                value = 0
-                print("Detected No Cockpit")
-            else:
-                value = testread
-            time.sleep(1)    
-    except:
-        return
+
    
     
-        
+class MemoryRead (threading.Thread):
+    def __init__(self,trayicon,w):
+        threading.Thread.__init__(self)
+        self.tray_icon = trayicon
+        self.w = w
+        self.RunThread = True
+        self.paused = False
+    def run(self):
+        while self.RunThread:
+            if not self.paused:
+                try:
+                    
+                    pm = pymem.Pymem("FlightSimulator.exe")
+                    client = pymem.process.module_from_name(pm.process_handle, "FlightSimulator.exe").lpBaseOfDll
+                    system('cls') 
+                    print(f"Started memory monitoring...... @ {hex(client+  0x3592528)}")
+
+                    self.tray_icon.hide()
+                    self.tray_icon.setNewIcon(QtGui.QIcon("iconG.png"))
+                    self.tray_icon.show()
+                    self.tray_icon.setNewToolTip(f"Reading memory @ {hex(client+  0x3592528)}")
+                    self.ReadMemory(pm,client)
+                    self.tray_icon.hide()
+                    self.tray_icon.setNewIcon(QtGui.QIcon("icon.png"))
+                    self.tray_icon.show()
+                    self.tray_icon.setNewToolTip(f"Not Monitoring Memory")
+
+                except pymem.exception.ProcessNotFound:
+                    print("Could not attach to FS2020, is it running?")
+                    print("Testing in 10 seconds again...")
+                    time.sleep(10)
+                    pass
     
+    def exitThread(self):
+        self.RunThread = False
+    
+    def togglePauseReading (self):
+        
+        self.paused = not (bool(self.paused))
+        if(self.paused):
+            self.tray_icon.hide()
+            self.tray_icon.setIcon(QtGui.QIcon("icon.png"))
+            self.tray_icon.show()
+            self.tray_icon.setNewToolTip(f"Not Monitoring Memory (Paused)")
+        else:
+            self.tray_icon.setNewToolTip(f"Not Monitoring Memory")
+    
+    def ReadMemory(self,Proc,ProcModule):
+        value = 'NaN'
+        try:
+            while True:
+                testread = Proc.read_int(ProcModule+  0x3592528)
+                
+                if(testread == 256 and testread != value and value == 0):
+                    doAuto()
+                    value = testread
+                    print("Detected Cockpit")
+                elif(testread == 0 and testread != value):
+                    value = 0
+                    print("Detected No Cockpit")
+                else:
+                    value = testread
+                time.sleep(1)    
+        except:
+            return
+        
     
 
 
@@ -130,31 +212,15 @@ def main():
     app = QtWidgets.QApplication(sys.argv)
     w = QtWidgets.QWidget()
     tray_icon = SystemTrayIcon(QtGui.QIcon("icon.png"),w)
+    mR = MemoryRead(tray_icon,w)
+    mR.start()
+    tray_icon.setThread(mR)
     tray_icon.show()
-    while True:
-        try:
-            
-            pm = pymem.Pymem("FlightSimulator.exe")
-            client = pymem.process.module_from_name(pm.process_handle, "FlightSimulator.exe").lpBaseOfDll
-            system('cls') 
-            print(f"Started memory monitoring...... @ {hex(client+  0x3592528)}")
-            
-            tray_icon.hide()
-            tray_icon = SystemTrayIcon(QtGui.QIcon("iconG.png"),w)
-            tray_icon.show()
-            tray_icon.setNewToolTip(f"Reading memory @ {hex(client+  0x3592528)}")
-            ReadMemory(pm,client)
-            tray_icon.hide()
-            tray_icon = SystemTrayIcon(QtGui.QIcon("icon.png"),w)
-            tray_icon.show()
-            tray_icon.setNewToolTip(f"Not Monitoring Memory")
+    sys.exit(app.exec_())
 
-        except pymem.exception.ProcessNotFound:
-            print("Could not attach to FS2020, is it running?")
-            print("Testing in 10 seconds again...")
-            time.sleep(10)
-            pass
+    
 
 
 if __name__ == '__main__':
     main()
+
