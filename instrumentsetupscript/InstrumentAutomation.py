@@ -8,6 +8,7 @@ import time
 import os
 import sys
 import threading
+import keyboard
 from PySide2 import QtWidgets, QtGui
 from os import system, name 
 
@@ -21,10 +22,12 @@ class SystemTrayIcon(QtWidgets.QSystemTrayIcon):
     def __init__(self,icon,parent=None):
         QtWidgets.QSystemTrayIcon.__init__(self,icon,parent)
         menu = QtWidgets.QMenu(parent)
-
+        
         toggleMemoryRead = menu.addAction("Toggle Memory Reading")
         toggleMemoryRead.triggered.connect(self.toggleReading)
-        
+        recordNewSequence = menu.addAction("Record New Sequence")
+        recordNewSequence.triggered.connect(self.NewSequence)
+        recordNewSequence.setEnabled(False)
         openConfig = menu.addAction("Open Configuration")
         openConfig.triggered.connect(self.open_config)
 
@@ -45,16 +48,15 @@ class SystemTrayIcon(QtWidgets.QSystemTrayIcon):
         :return:
         """
         if reason == self.DoubleClick:
-            self.open_notepad()
-        # if reason == self.Trigger:
-        #     self.open_notepad()
+            print("DoubleClick")
     def exit(self, reason):
         self.thread.exitThread()
+
         sys.exit()
     def setThread(self, thread):
         self.thread = thread
     def open_config(self):
-        os.system('open config.json')
+        os.system('start config.json')
 
     def toggleReading(self):
         self.thread.togglePauseReading()
@@ -62,6 +64,9 @@ class SystemTrayIcon(QtWidgets.QSystemTrayIcon):
         self.setToolTip(tt)
     def setNewIcon(self,icon):
         self.setIcon(icon)
+    def NewSequence(self):
+        recording = RecordInput()
+        recording.start()
 
 
 f = open(configLocation, "r")
@@ -144,69 +149,113 @@ class MemoryRead (threading.Thread):
         self.w = w
         self.RunThread = True
         self.paused = False
+        self.readingMemory = False
+        self.thread = ''
     def run(self):
         while self.RunThread:
-            if not self.paused:
-                try:
-                    
+            if not self.paused and not self.readingMemory:
+                try:                
                     pm = pymem.Pymem("FlightSimulator.exe")
                     client = pymem.process.module_from_name(pm.process_handle, "FlightSimulator.exe").lpBaseOfDll
-                    system('cls') 
-                    print(f"Started memory monitoring...... @ {hex(client+  0x3592528)}")
-
-                    self.tray_icon.hide()
+                    self.thread = ReadMemoryAdress(pm,client)
+                    self.thread.start()
+                    self.readingMemory = True
                     self.tray_icon.setNewIcon(QtGui.QIcon("iconG.png"))
-                    self.tray_icon.show()
                     self.tray_icon.setNewToolTip(f"Reading memory @ {hex(client+  0x3592528)}")
-                    self.ReadMemory(pm,client)
-                    self.tray_icon.hide()
-                    self.tray_icon.setNewIcon(QtGui.QIcon("icon.png"))
-                    self.tray_icon.show()
-                    self.tray_icon.setNewToolTip(f"Not Monitoring Memory")
+                    
 
                 except pymem.exception.ProcessNotFound:
                     print("Could not attach to FS2020, is it running?")
                     print("Testing in 10 seconds again...")
                     time.sleep(10)
                     pass
-    
+            if self.readingMemory:
+                if not self.thread.is_alive():
+                    self.tray_icon.setNewIcon(QtGui.QIcon("icon.png"))
+                    self.tray_icon.setNewToolTip(f"Not Monitoring Memory")
+                    self.readingMemory = False
+                    
+        
     def exitThread(self):
         self.RunThread = False
+        if self.thread.is_alive:
+            self.thread.exitThread()
     
     def togglePauseReading (self):
         
         self.paused = not (bool(self.paused))
         if(self.paused):
-            self.tray_icon.hide()
             self.tray_icon.setIcon(QtGui.QIcon("icon.png"))
-            self.tray_icon.show()
             self.tray_icon.setNewToolTip(f"Not Monitoring Memory (Paused)")
         else:
             self.tray_icon.setNewToolTip(f"Not Monitoring Memory")
+
+        
     
-    def ReadMemory(self,Proc,ProcModule):
-        value = 'NaN'
+class ReadMemoryAdress(threading.Thread):
+    def __init__(self,pm,client):
+        
+        threading.Thread.__init__(self)
+        self.RunThread = True
+        self.Process = pm
+        self.ProcessModule = client
+        self.value = 'NaN'
+        system('cls') 
+        print(f"Started memory monitoring...... @ {hex(client+  0x3592528)}")
+    def run(self):
         try:
             while True:
-                testread = Proc.read_int(ProcModule+  0x3592528)
+                if not self.RunThread:
+                    break
+                testread = self.Process.read_int(self.ProcessModule+  0x3592528)
                 
-                if(testread == 256 and testread != value and value == 0):
+                if(testread == 256 and testread != self.value and self.value == 0):
                     doAuto()
-                    value = testread
+                    self.value = testread
                     print("Detected Cockpit")
-                elif(testread == 0 and testread != value):
-                    value = 0
+                elif(testread == 0 and testread != self.value):
+                    self.value = 0
                     print("Detected No Cockpit")
                 else:
-                    value = testread
+                    self.value = testread
                 time.sleep(1)    
         except:
             return
+    def exitThread(self):
+        self.RunThread = False
+class RecordInput(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+        self.RunThread = True
+        self.Recording = True
+        
+    def run(self):
+        print("Recording New Input")
+        while self.Recording:
+            if keyboard.is_pressed("num 1"):
+                print("1")
+            elif keyboard.is_pressed("num 2"):
+                print("2")
+            elif keyboard.is_pressed("num 3"):
+                print("3")
+            elif keyboard.is_pressed("num 4"):
+                print("4")
+            elif keyboard.is_pressed("num 5"):
+                print("5")
+            elif keyboard.is_pressed("F12"):
+                print("num *")
+                self.exitThread()
+                return
+            else:
+                print("EE")
+
+
+    def exitThread(self):
+        print("Stopped Recording")
+        self.Recording = False
+        self.RunThread = False
         
     
-
-
-
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
