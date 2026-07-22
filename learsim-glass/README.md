@@ -73,10 +73,11 @@ npm install
 npm run tauri build          # binary in src-tauri/target/release/
 ```
 
-Bundling installers is disabled by default (`bundle.active = false`) so the
-build doesn't require icon assets. To produce installers, generate icons
-(`npm run tauri icon path/to/icon.png`) and set `bundle.active = true` in
-`src-tauri/tauri.conf.json`.
+A placeholder icon set is included under `src-tauri/icons/` (needed by
+`tauri-build` for the Windows resource on every build). Installer bundling is
+disabled by default (`bundle.active = false`); to produce installers, set it to
+`true` in `src-tauri/tauri.conf.json` (and install the platform bundler tools).
+Replace the icons any time with `npm run tauri icon path/to/icon.png`.
 
 ---
 
