@@ -28,10 +28,13 @@ so there are no CORS or mixed-content issues.
 
 When a screen's view is **glassout**, you set the engine URL and panel:
 
+- **Panel picker** — as soon as a glassout view is selected and the engine URL
+  is set, the engine's panels are listed automatically as a grid of cards, each
+  showing a **live preview** of that panel (a click-through iframe of the
+  engine's `/panel/{id}` viewer). Click a card to select it. Editing the engine
+  URL re-loads the list.
 - **Test engine** — reads `GET <engineUrl>/status` and reports version, MSFS
   connection state, and panel count.
-- **List panels** — reads the same `/status` and fills the `panelId`
-  autocomplete with the engine's live panel list.
 - **Copy viewer URL** — copies the exact `/panel/{id}?…` URL the screen will
   show, so you can open it in a browser to verify.
 

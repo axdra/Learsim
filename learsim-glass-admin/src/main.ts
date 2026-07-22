@@ -11,6 +11,7 @@ import {
   type DeviceSnapshot,
   type ScreenConfig,
   type StoredDevice,
+  type ViewDescriptor,
   type ViewField,
 } from "./api.ts";
 import { buildViewerUrl, describeStatus, fetchStatus, listPanels } from "./glassout.ts";
@@ -212,11 +213,12 @@ function renderScreenCard(snap: DeviceSnapshot, screen: ScreenConfig): HTMLEleme
     const view = snap.views.find((v) => v.id === draft.viewId);
     if (!view) return;
     settingsHost.append(h("p", { class: "view-desc" }, view.description));
-    for (const field of view.fields) {
-      settingsHost.append(renderField(field, draft.settings));
-    }
     if (view.id === "glassout") {
-      settingsHost.append(renderGlassoutTools(draft.settings));
+      renderGlassoutSettings(settingsHost, view, draft.settings);
+    } else {
+      for (const field of view.fields) {
+        settingsHost.append(renderField(field, draft.settings));
+      }
     }
   };
 
@@ -311,28 +313,147 @@ function renderField(field: ViewField, settings: Record<string, unknown>): HTMLE
   }
 
   // text
-  const datalistId = `dl-${field.key}-${Math.random().toString(36).slice(2, 7)}`;
   const input = h("input", {
     class: "input",
     value: current == null ? "" : String(current),
-    list: field.key === "panelId" ? datalistId : undefined,
     oninput: (e: Event) => (settings[field.key] = (e.target as HTMLInputElement).value),
   });
-  const wrap = h("label", { class: "field" }, h("span", { class: "field__label" }, field.label), input);
-  if (field.key === "panelId") {
-    wrap.append(h("datalist", { id: datalistId }));
-  }
-  return wrap;
+  return h("label", { class: "field" }, h("span", { class: "field__label" }, field.label), input);
 }
 
-// glassout helpers: check the engine's /status and populate the panelId
-// picker from its live panel list — all over plain HTTP, no SDK needed.
+// Bespoke glassout settings: engine URL + an auto-loading visual panel picker
+// (live preview per panel) + the remaining view fields + tools.
+function renderGlassoutSettings(
+  host: HTMLElement,
+  view: ViewDescriptor,
+  settings: Record<string, unknown>,
+) {
+  const pickerEl = h("div", { class: "panel-picker" });
+  let debounce: number | undefined;
+  const reload = () => void loadPanels(pickerEl, settings);
+
+  // Engine URL — editing it re-loads the picker (debounced).
+  host.append(
+    renderTextField("engineUrl", "Engine URL", settings, () => {
+      window.clearTimeout(debounce);
+      debounce = window.setTimeout(reload, 600);
+    }),
+  );
+
+  // Panel picker with a manual refresh.
+  host.append(
+    h(
+      "div",
+      { class: "field" },
+      h(
+        "div",
+        { class: "field__row" },
+        h("span", { class: "field__label" }, "Panel"),
+        h(
+          "button",
+          { class: "btn btn--ghost btn--sm", type: "button", onclick: reload },
+          "Refresh",
+        ),
+      ),
+      pickerEl,
+    ),
+  );
+  reload(); // always list panels on open
+
+  // Remaining fields (engineUrl + panelId are handled above / by the picker).
+  for (const field of view.fields) {
+    if (field.key === "engineUrl" || field.key === "panelId") continue;
+    host.append(renderField(field, settings));
+  }
+
+  host.append(renderGlassoutTools(settings));
+}
+
+function renderTextField(
+  key: string,
+  label: string,
+  settings: Record<string, unknown>,
+  onInput?: () => void,
+): HTMLElement {
+  const cur = settings[key];
+  const input = h("input", {
+    class: "input",
+    value: cur == null ? "" : String(cur),
+    oninput: (e: Event) => {
+      settings[key] = (e.target as HTMLInputElement).value;
+      onInput?.();
+    },
+  });
+  return h("label", { class: "field" }, h("span", { class: "field__label" }, label), input);
+}
+
+// Fetch the engine's panels and render a grid of cards, each with a live
+// preview iframe of the engine's /panel/{id} viewer. Clicking a card selects
+// that panel. Previews are click-through (pointer-events:none) so a click
+// selects rather than being forwarded to the sim.
+async function loadPanels(pickerEl: HTMLElement, settings: Record<string, unknown>) {
+  const engineUrl = String(settings.engineUrl ?? "")
+    .trim()
+    .replace(/\/+$/, "");
+  clear(pickerEl);
+  if (!engineUrl) {
+    pickerEl.append(h("p", { class: "muted" }, "Set an engine URL to list panels."));
+    return;
+  }
+  pickerEl.append(h("p", { class: "muted" }, "Loading panels…"));
+
+  let panels;
+  try {
+    panels = await listPanels(engineUrl);
+  } catch (err) {
+    clear(pickerEl);
+    pickerEl.append(h("p", { class: "muted" }, `Could not list panels: ${String(err)}`));
+    return;
+  }
+
+  clear(pickerEl);
+  if (!panels.length) {
+    pickerEl.append(h("p", { class: "muted" }, "No panels reported by the engine."));
+    return;
+  }
+
+  const grid = h("div", { class: "panel-grid" });
+  const cards: { id: string; el: HTMLElement }[] = [];
+  const updateSel = () =>
+    cards.forEach((c) =>
+      c.el.classList.toggle("panel-card--selected", settings.panelId === c.id),
+    );
+
+  for (const p of panels) {
+    const preview = h("iframe", {
+      class: "panel-card__preview",
+      src: `${engineUrl}/panel/${encodeURIComponent(p.id)}?fps=10&fit=contain`,
+    });
+    const card = h(
+      "button",
+      {
+        class: "panel-card",
+        type: "button",
+        title: p.id,
+        onclick: () => {
+          settings.panelId = p.id;
+          updateSel();
+        },
+      },
+      h("div", { class: "panel-card__frame" }, preview),
+      h("div", { class: "panel-card__name" }, p.name || p.id),
+    );
+    cards.push({ id: p.id, el: card });
+    grid.append(card);
+  }
+
+  pickerEl.append(grid);
+  updateSel();
+}
+
+// glassout tools: engine health readout + copy the exact viewer URL.
 function renderGlassoutTools(settings: Record<string, unknown>): HTMLElement {
   const result = h("span", { class: "muted" }, "");
-
-  // Find the panelId <datalist> belonging to the same screen card.
-  const cardDatalist = (fromButton: HTMLElement): HTMLDataListElement | null =>
-    fromButton.closest(".card")?.querySelector<HTMLDataListElement>("datalist") ?? null;
 
   const test = h(
     "button",
@@ -351,37 +472,6 @@ function renderGlassoutTools(settings: Record<string, unknown>): HTMLElement {
       },
     },
     "Test engine",
-  );
-
-  const discover = h(
-    "button",
-    {
-      class: "btn btn--ghost",
-      type: "button",
-      onclick: async (e: Event) => {
-        // Capture the button now: after the await, e.currentTarget is null.
-        const button = e.currentTarget as HTMLElement;
-        const engineUrl = String(settings.engineUrl ?? "");
-        if (!engineUrl) return void (result.textContent = "Set an engine URL first.");
-        result.textContent = "Listing panels…";
-        try {
-          const panels = await listPanels(engineUrl);
-          const dl = cardDatalist(button);
-          if (dl) {
-            clear(dl);
-            panels.forEach((p) =>
-              dl.append(h("option", { value: p.id }, p.name || p.id)),
-            );
-          }
-          result.textContent = panels.length
-            ? `Found ${panels.length} panel(s) — pick one in the Panel id field.`
-            : "Engine reachable but reported no panels.";
-        } catch (err) {
-          result.textContent = `Could not list panels: ${String(err)}`;
-        }
-      },
-    },
-    "List panels",
   );
 
   const copy = h(
@@ -403,7 +493,7 @@ function renderGlassoutTools(settings: Record<string, unknown>): HTMLElement {
     "Copy viewer URL",
   );
 
-  return h("div", { class: "glassout-tools" }, test, discover, copy, result);
+  return h("div", { class: "glassout-tools" }, test, copy, result);
 }
 
 // --- actions ----------------------------------------------------------------
