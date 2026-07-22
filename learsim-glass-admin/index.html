@@ -4,6 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>learsim · glass admin</title>
+    <!-- Fallback styling so the window is dark (not blank white) even if the
+         Tailwind stylesheet fails to load. Tailwind overrides these once ready. -->
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        background: #0a0d12;
+        color: #e6edf5;
+        font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      }
+      #app {
+        height: 100%;
+      }
+    </style>
   </head>
   <body>
     <div id="app"></div>

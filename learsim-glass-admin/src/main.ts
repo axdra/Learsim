@@ -34,6 +34,26 @@ const root = document.getElementById("app") as HTMLElement;
 
 const endpointKey = (e: Endpoint): string => `${e.host}:${e.port}`;
 
+// Surface uncaught errors on-screen instead of failing silently to a blank
+// window, and mirror them into the status bar when the shell is up.
+function reportFatal(message: string) {
+  const bar = document.getElementById("statusbar");
+  if (bar) {
+    bar.textContent = message;
+    bar.dataset.kind = "error";
+    return;
+  }
+  root.innerHTML =
+    '<div style="padding:2rem;color:#ff6b6b;font-family:system-ui,sans-serif;white-space:pre-wrap">' +
+    `${message.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c] ?? c)}</div>`;
+}
+window.addEventListener("error", (e) =>
+  reportFatal(`Script error: ${e.message}\n${e.filename ?? ""}:${e.lineno ?? ""}`),
+);
+window.addEventListener("unhandledrejection", (e) =>
+  reportFatal(`Unhandled rejection: ${String(e.reason)}`),
+);
+
 function setStatus(msg: string, kind: "info" | "error" = "info") {
   const bar = document.getElementById("statusbar");
   if (bar) {

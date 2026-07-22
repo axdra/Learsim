@@ -66,6 +66,23 @@ Frontend stack: **TypeScript + Vite + Tailwind CSS v4** (design tokens live in
 `src/styles.css` under `@theme`). Tooling: **ESLint** (`npm run lint`) and
 **Prettier** with the Tailwind class-sorting plugin (`npm run format`).
 
+> **Always launch through the Tauri CLI** (`npm run tauri dev`) from *this*
+> folder — not `cargo run` / your IDE's Run button inside `src-tauri`. A debug
+> build points the webview at the Vite dev server (`http://localhost:1420`);
+> running cargo alone never starts Vite, so the window loads nothing and shows a
+> **blank screen**. Same for a standalone binary: build it with
+> `npm run tauri build`, which builds the frontend into `../dist` and embeds it.
+
+### Troubleshooting a blank / white screen
+
+1. **Launched via cargo/IDE instead of the Tauri CLI** → the Vite dev server
+   isn't running. Use `npm run tauri dev` (or `pnpm tauri dev`).
+2. **Frontend deps not installed** (after the Tailwind change) → run
+   `npm install` in this folder first.
+3. Otherwise open the webview devtools (right-click → Inspect in a dev build)
+   and check the Console/Network tabs. The app now also prints uncaught errors
+   directly onto the screen instead of failing to white.
+
 ## Build
 
 ```bash

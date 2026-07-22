@@ -4,6 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>learsim-glass</title>
+    <!-- Fallback styling so the screen is dark (not blank white) even if the
+         Tailwind stylesheet fails to load. Tailwind, injected by the JS bundle,
+         overrides these once it is ready. -->
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        background: #05070a;
+        color: #e8eef5;
+        font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      }
+      #view {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
   </head>
   <body>
     <div id="view"></div>
