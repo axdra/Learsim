@@ -1,94 +1,52 @@
-// glassout-client integration seam.
+// glassout engine discovery over plain HTTP.
 //
-// The glassout SDK (`glassout-client`) isn't published to npm yet — it's shared
-// privately by flyingart. When you drop it into this project (`npm add
-// glassout-client` once it's live, or vendor the files), the helpers below
-// light up automatically: panel discovery for the `panelId` dropdown and LAN
-// engine discovery for the `engineUrl` field. Until then, everything falls back
-// to manual entry and the Rust `/status` probe.
-//
-// The dynamic import is marked `@vite-ignore` and uses an assembled specifier
-// so the bundler doesn't try to resolve a package that isn't installed; if the
-// module is absent at runtime the import throws and we return null.
+// No SDK required: the engine exposes everything the admin needs on
+// `GET /status` — the live panel list plus health/version/MSFS state. We reach
+// it through the Rust `probe_engine` command (which proxies `<engineUrl>/status`
+// and sidesteps CORS), so "List panels" and "Test engine" work against any
+// reachable engine with zero extra dependencies.
 
-const SDK_SPECIFIER = ["glassout", "client"].join("-");
+import { probeEngine } from "./api.ts";
 
-// Minimal shape we rely on — matches the documented SDK surface.
-interface GlassOutClientLike {
-  connect(): Promise<void>;
-  disconnect(): Promise<void>;
-  on(event: "panels", cb: (panels: Array<{ name: string }>) => void): void;
-}
-interface GlassOutSdk {
-  GlassOutClient: new (opts: {
-    name: string;
-    appKey: string;
-    mode: "client" | "host";
-    host?: string;
-    port?: number;
-    connectionType?: "viewer" | "process";
-  }) => GlassOutClientLike;
+export interface EnginePanel {
+  id: string;
+  name: string;
+  width?: number;
+  height?: number;
 }
 
-async function loadSdk(): Promise<GlassOutSdk | null> {
-  try {
-    // @vite-ignore
-    return (await import(/* @vite-ignore */ SDK_SPECIFIER)) as unknown as GlassOutSdk;
-  } catch {
-    return null;
-  }
+export interface EngineStatus {
+  ok?: boolean;
+  version?: string;
+  port?: number;
+  uptime?: number;
+  state?: {
+    msfsConnection?: string;
+    isAdmin?: boolean;
+    [k: string]: unknown;
+  };
+  panels?: EnginePanel[];
+  [k: string]: unknown;
 }
 
-/** True when the glassout-client SDK is available in this build. */
-export async function sdkAvailable(): Promise<boolean> {
-  return (await loadSdk()) !== null;
+/** Fetch and parse a glassout engine's `/status` snapshot. */
+export async function fetchStatus(engineUrl: string): Promise<EngineStatus> {
+  return (await probeEngine(engineUrl)) as EngineStatus;
 }
 
-/** Parse an engine URL like "http://192.168.1.42:8787" into host + port. */
-export function parseEngineUrl(engineUrl: string): { host: string; port: number } | null {
-  try {
-    const u = new URL(engineUrl);
-    return { host: u.hostname, port: u.port ? Number(u.port) : 8787 };
-  } catch {
-    return null;
-  }
+/** The panels a glassout engine is currently serving, for the panelId picker. */
+export async function listPanels(engineUrl: string): Promise<EnginePanel[]> {
+  const status = await fetchStatus(engineUrl);
+  return Array.isArray(status.panels) ? status.panels : [];
 }
 
-/**
- * List the panel names a glassout engine is currently serving, via the SDK.
- * Returns null when the SDK isn't present (caller should fall back to manual
- * entry). Connects as a lightweight viewer client and resolves on the first
- * `panels` broadcast.
- */
-export async function listPanels(engineUrl: string): Promise<string[] | null> {
-  const sdk = await loadSdk();
-  if (!sdk) return null;
-
-  const target = parseEngineUrl(engineUrl);
-  if (!target) return [];
-
-  const engine = new sdk.GlassOutClient({
-    name: "learsim-glass-admin",
-    appKey: "learsim-glass-admin",
-    mode: "client",
-    host: target.host,
-    port: target.port,
-    connectionType: "viewer",
-  });
-
-  return new Promise<string[]>((resolve) => {
-    const done = (panels: string[]) => {
-      engine.disconnect().catch(() => {});
-      resolve(panels);
-    };
-    const timeout = window.setTimeout(() => done([]), 4000);
-    engine.on("panels", (panels) => {
-      window.clearTimeout(timeout);
-      done(panels.map((p) => p.name));
-    });
-    engine.connect().catch(() => {
-      window.clearTimeout(timeout);
-      done([]);
-    });
-  });
+/** A short human-readable health line for the "Test engine" button. */
+export function describeStatus(status: EngineStatus): string {
+  const parts: string[] = [];
+  if (status.version) parts.push(`v${status.version}`);
+  const msfs = status.state?.msfsConnection;
+  if (msfs) parts.push(`MSFS ${msfs}`);
+  const count = status.panels?.length;
+  if (typeof count === "number") parts.push(`${count} panel(s)`);
+  return parts.length ? parts.join(" · ") : "reachable";
 }

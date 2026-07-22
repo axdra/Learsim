@@ -126,9 +126,9 @@ renderer in `src/views/`. Both are keyed by the same id.
 | `path`      | Advanced: a ready-made viewer path (`/canvas?…`, `/instance/…`) that overrides the panel fields. |
 
 URL construction lives in one place: `src-tauri/src/glassout.rs`
-(`build_view_url`). It mirrors the SDK's `buildPanelUrl` semantics. Panel/engine
-**discovery** (picking from a list) is the admin app's job via the
-`glassout-client` SDK.
+(`build_view_url`). It mirrors the engine's `/panel/{id}` viewer semantics.
+Panel **discovery** (picking from a list) is the admin app's job, done over the
+engine's plain HTTP `GET /status` endpoint — no SDK required.
 
 ---
 

@@ -11,9 +11,10 @@
 //! This module is the single place that knows how to turn a screen's settings
 //! into that URL. It mirrors the SDK's `buildPanelUrl` semantics.
 //!
-//! Selecting *which* panel is a job for the admin app, which uses the
-//! `glassout-client` SDK (LAN discovery + `panels`/`configs` events) to present
-//! a real list. Here we only need the resulting engine URL + panel id.
+//! Selecting *which* panel is a job for the admin app, which reads the engine's
+//! plain HTTP `GET /status` endpoint (it returns the live `panels[]` list) to
+//! present a real list. No glassout SDK is required. Here we only need the
+//! resulting engine URL + panel id.
 
 use serde_json::{Map, Value};
 

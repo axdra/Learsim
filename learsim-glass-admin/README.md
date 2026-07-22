@@ -25,24 +25,18 @@ so there are no CORS or mixed-content issues.
 
 When a screen's view is **glassout**, you set the engine URL and panel:
 
-- **Test engine** — probes `GET <engineUrl>/status` to confirm the engine is
-  reachable.
-- **List panels** — enumerates the engine's panels into the `panelId`
-  autocomplete **when the `glassout-client` SDK is installed** (see below).
-  Without it, type the panel id manually.
+- **Test engine** — reads `GET <engineUrl>/status` and reports version, MSFS
+  connection state, and panel count.
+- **List panels** — reads the same `/status` and fills the `panelId`
+  autocomplete with the engine's live panel list.
 
-### Enabling panel / engine discovery (glassout-client SDK)
+### No SDK required
 
-The [`glassout-client`](https://glassout.flyingart.dev/library/developers/architecture)
-TypeScript SDK isn't on npm yet — request the files from flyingart, then:
-
-```bash
-npm add glassout-client       # once it's published, or vendor the files
-```
-
-The integration seam (`src/glassout.ts`) loads it lazily, so **List panels**
-and (future) LAN engine discovery light up automatically once it resolves. No
-other code changes needed.
+Everything above uses the engine's plain **HTTP `/status`** endpoint (which
+returns `panels: [{ id, name, width, height }, …]`), proxied through the Rust
+backend to avoid CORS. The private `glassout-client` TypeScript SDK is **not**
+needed — discovery and the viewer URLs are all reachable over HTTP. `/status`
+handling lives in `src/glassout.ts`.
 
 ## Develop
 

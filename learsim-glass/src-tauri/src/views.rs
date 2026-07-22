@@ -113,9 +113,9 @@ pub fn view_manifest() -> Vec<ViewDescriptor> {
         // to the engine's HTML viewer URL, built from these settings by
         // `glassout::build_view_url`.
         //
-        // The admin app uses the `glassout-client` SDK to discover engines on
-        // the LAN and enumerate panels, so an operator picks `engineUrl` and
-        // `panelId` from real lists rather than typing them.
+        // The admin app enumerates an engine's panels over its plain HTTP
+        // `GET /status` endpoint, so an operator picks `panelId` from a real
+        // list rather than typing it. No glassout SDK is required.
         ViewDescriptor {
             id: "glassout".into(),
             name: "Glassout panel".into(),

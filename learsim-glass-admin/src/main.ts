@@ -4,7 +4,6 @@ import {
   deleteScreen,
   fetchDevice,
   listDevices,
-  probeEngine,
   removeDevice,
   setScreen,
   DEFAULT_CONTROL_PORT,
@@ -13,7 +12,7 @@ import {
   type StoredDevice,
   type ViewField,
 } from "./api.ts";
-import { listPanels } from "./glassout.ts";
+import { describeStatus, fetchStatus, listPanels } from "./glassout.ts";
 import { clear, h } from "./dom.ts";
 import "./styles.css";
 
@@ -288,10 +287,14 @@ function renderField(field: ViewField, settings: Record<string, unknown>): HTMLE
   return wrap;
 }
 
-// glassout-specific helpers: probe the engine and (if the SDK is present) list
-// panels into the panelId datalist.
+// glassout helpers: check the engine's /status and populate the panelId
+// picker from its live panel list — all over plain HTTP, no SDK needed.
 function renderGlassoutTools(settings: Record<string, unknown>): HTMLElement {
   const result = h("span", { class: "muted" }, "");
+
+  // Find the panelId <datalist> belonging to the same screen card.
+  const cardDatalist = (fromButton: HTMLElement): HTMLDataListElement | null =>
+    fromButton.closest(".card")?.querySelector<HTMLDataListElement>("datalist") ?? null;
 
   const test = h(
     "button",
@@ -303,12 +306,7 @@ function renderGlassoutTools(settings: Record<string, unknown>): HTMLElement {
         if (!engineUrl) return void (result.textContent = "Set an engine URL first.");
         result.textContent = "Probing…";
         try {
-          const status = await probeEngine(engineUrl);
-          const version =
-            (status as Record<string, unknown>)?.version ??
-            (status as Record<string, unknown>)?.engineVersion ??
-            "ok";
-          result.textContent = `Engine reachable (${String(version)})`;
+          result.textContent = `Engine ${describeStatus(await fetchStatus(engineUrl))}`;
         } catch (err) {
           result.textContent = `Unreachable: ${String(err)}`;
         }
@@ -322,23 +320,25 @@ function renderGlassoutTools(settings: Record<string, unknown>): HTMLElement {
     {
       class: "btn btn--ghost",
       type: "button",
-      onclick: async () => {
+      onclick: async (e: Event) => {
         const engineUrl = String(settings.engineUrl ?? "");
         if (!engineUrl) return void (result.textContent = "Set an engine URL first.");
         result.textContent = "Listing panels…";
-        const panels = await listPanels(engineUrl);
-        if (panels === null) {
-          result.textContent = "glassout-client SDK not installed — enter the panel id manually.";
-          return;
+        try {
+          const panels = await listPanels(engineUrl);
+          const dl = cardDatalist(e.currentTarget as HTMLElement);
+          if (dl) {
+            clear(dl);
+            panels.forEach((p) =>
+              dl.append(h("option", { value: p.id }, p.name || p.id)),
+            );
+          }
+          result.textContent = panels.length
+            ? `Found ${panels.length} panel(s) — pick one in the Panel id field.`
+            : "Engine reachable but reported no panels.";
+        } catch (err) {
+          result.textContent = `Could not list panels: ${String(err)}`;
         }
-        // Populate every panelId datalist currently on screen.
-        document.querySelectorAll<HTMLDataListElement>("datalist").forEach((dl) => {
-          clear(dl);
-          panels.forEach((p) => dl.append(h("option", { value: p })));
-        });
-        result.textContent = panels.length
-          ? `Found ${panels.length} panel(s).`
-          : "No panels reported.";
       },
     },
     "List panels",
