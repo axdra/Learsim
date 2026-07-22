@@ -1,4 +1,5 @@
 import type { ScreenState, ViewRenderer } from "./registry.ts";
+import { escapeHtml } from "./util.ts";
 
 // Placeholder shown when a screen is assigned the glassout view but its window
 // is parked on our app document — which the backend does when the engine is
@@ -14,14 +15,18 @@ export const glassoutView: ViewRenderer = (container: HTMLElement, screen: Scree
   const configured = engineUrl.length > 0;
 
   container.innerHTML = `
-    <div class="glassout">
-      <div class="glassout__spinner" aria-hidden="true"></div>
-      <div class="glassout__title">${configured ? "Connecting to glassout" : "Glassout not configured"}</div>
-      <div class="glassout__detail">
+    <div class="flex flex-col items-center gap-4 text-center">
+      <div class="mb-1 h-12 w-12 animate-spin rounded-full border-[3px] border-muted border-t-accent" aria-hidden="true"></div>
+      <div class="text-[clamp(1.5rem,5vw,3rem)] font-thin tracking-[0.04em]">${
+        configured ? "Connecting to glassout" : "Glassout not configured"
+      }</div>
+      <div class="font-mono text-base opacity-75">
         ${configured ? escapeHtml(engineUrl) : "Set an engine URL in the admin app."}
-        ${panelId ? `<span class="glassout__dot">•</span>${escapeHtml(panelId)}` : ""}
+        ${panelId ? `<span class="mx-2 text-accent">•</span>${escapeHtml(panelId)}` : ""}
       </div>
-      <div class="glassout__id">${escapeHtml(screen.deviceName)} · ${escapeHtml(screen.name)}</div>
+      <div class="mt-2 text-xs uppercase tracking-[0.14em] text-muted">${escapeHtml(
+        screen.deviceName,
+      )} · ${escapeHtml(screen.name)}</div>
     </div>
   `;
 
@@ -29,17 +34,3 @@ export const glassoutView: ViewRenderer = (container: HTMLElement, screen: Scree
     container.innerHTML = "";
   };
 };
-
-function escapeHtml(input: string): string {
-  return input.replace(
-    /[&<>"']/g,
-    (c) =>
-      ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;",
-      })[c] ?? c,
-  );
-}

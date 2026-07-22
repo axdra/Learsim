@@ -11,6 +11,7 @@ import { invoke } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
 import { getCurrentWindow } from "@tauri-apps/api/window";
 import { getRenderer, type ScreenState } from "./views/registry.ts";
+import { escapeHtml } from "./views/util.ts";
 import "./styles.css";
 
 const container = document.getElementById("view") as HTMLElement;
@@ -25,7 +26,12 @@ function render(screen: ScreenState) {
 function renderError(message: string) {
   cleanup?.();
   cleanup = null;
-  container.innerHTML = `<div class="fatal"><div class="fatal__title">learsim · glass</div><div class="fatal__msg">${message}</div></div>`;
+  container.innerHTML = `
+    <div class="p-8 text-center">
+      <div class="mb-4 text-xs uppercase tracking-[0.4em] text-muted">learsim · glass</div>
+      <div class="mx-auto max-w-[40ch] text-lg text-danger">${escapeHtml(message)}</div>
+    </div>
+  `;
 }
 
 async function boot() {

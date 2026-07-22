@@ -1,160 +1,37 @@
-:root {
-  --bg: #05070a;
-  --fg: #e8eef5;
-  --muted: #5c6b7a;
-  --accent: #29c5ff;
-  --danger: #ff5d5d;
-  color-scheme: dark;
+@import "tailwindcss";
+
+/* Design tokens — exposed as Tailwind color utilities (bg-bg, text-muted, …). */
+@theme {
+  --color-bg: #05070a;
+  --color-panel: #11161d;
+  --color-panel-2: #161c24;
+  --color-line: #232b36;
+  --color-fg: #e8eef5;
+  --color-muted: #5c6b7a;
+  --color-accent: #29c5ff;
+  --color-accent-dim: #17415a;
+  --color-danger: #ff5d5d;
+  --color-ok: #3ddc84;
+
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html,
-body,
-#view {
-  width: 100%;
-  height: 100%;
-}
-
-body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-  overflow: hidden;
-  cursor: none; /* kiosk: hide the pointer */
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-#view {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* --- standby --------------------------------------------------------------- */
-.standby {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-}
-.standby__mark {
-  font-size: 0.8rem;
-  letter-spacing: 0.5em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.standby__message {
-  font-size: clamp(2rem, 8vw, 6rem);
-  font-weight: 200;
-  letter-spacing: 0.04em;
-}
-.standby__id {
-  font-size: 1rem;
-  color: var(--muted);
-  letter-spacing: 0.08em;
-}
-.standby__dot {
-  margin: 0 0.6em;
-  color: var(--accent);
-}
-
-/* --- clock ----------------------------------------------------------------- */
-.clock {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-.clock__time {
-  font-size: clamp(4rem, 20vw, 16rem);
-  font-weight: 200;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.02em;
-  line-height: 1;
-}
-.clock__date {
-  font-size: clamp(1rem, 3vw, 2rem);
-  color: var(--muted);
-  letter-spacing: 0.1em;
-}
-.clock__id {
-  margin-top: 1.4rem;
-  font-size: 0.85rem;
-  color: var(--muted);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-/* --- glassout placeholder -------------------------------------------------- */
-.glassout {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-.glassout__spinner {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  border: 3px solid var(--muted);
-  border-top-color: var(--accent);
-  animation: glassout-spin 0.9s linear infinite;
-  margin-bottom: 0.4rem;
-}
-@keyframes glassout-spin {
-  to {
-    transform: rotate(360deg);
+@layer base {
+  html,
+  body,
+  #view {
+    height: 100%;
+    width: 100%;
   }
-}
-.glassout__title {
-  font-size: clamp(1.5rem, 5vw, 3rem);
-  font-weight: 200;
-  letter-spacing: 0.04em;
-}
-.glassout__detail {
-  color: var(--fg);
-  font-family: ui-monospace, "SF Mono", Menlo, monospace;
-  font-size: 1rem;
-  opacity: 0.75;
-}
-.glassout__dot {
-  margin: 0 0.5em;
-  color: var(--accent);
-}
-.glassout__id {
-  margin-top: 0.6rem;
-  font-size: 0.8rem;
-  color: var(--muted);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
 
-/* --- test pattern ---------------------------------------------------------- */
-.testpattern {
-  display: block;
-}
+  body {
+    @apply bg-bg text-fg font-sans overflow-hidden select-none;
+    /* Kiosk: hide the pointer. */
+    cursor: none;
+  }
 
-/* --- fatal error ----------------------------------------------------------- */
-.fatal {
-  text-align: center;
-  padding: 2rem;
-}
-.fatal__title {
-  font-size: 0.8rem;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 1rem;
-}
-.fatal__msg {
-  color: var(--danger);
-  font-size: 1.1rem;
-  max-width: 40ch;
+  #view {
+    @apply flex items-center justify-center;
+  }
 }

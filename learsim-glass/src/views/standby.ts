@@ -1,4 +1,5 @@
 import type { ScreenState, ViewRenderer } from "./registry.ts";
+import { escapeHtml } from "./util.ts";
 
 // Idle screen: shows the device + screen name so an operator can identify a
 // physical panel at a glance. An optional `message` setting overrides the hint.
@@ -9,12 +10,12 @@ export const standbyView: ViewRenderer = (container: HTMLElement, screen: Screen
       : "Standby";
 
   container.innerHTML = `
-    <div class="standby">
-      <div class="standby__mark">learsim · glass</div>
-      <div class="standby__message">${escapeHtml(message)}</div>
-      <div class="standby__id">
+    <div class="flex flex-col gap-5 text-center">
+      <div class="text-xs uppercase tracking-[0.5em] text-muted">learsim · glass</div>
+      <div class="text-[clamp(2rem,8vw,6rem)] font-thin tracking-[0.04em]">${escapeHtml(message)}</div>
+      <div class="text-base tracking-[0.08em] text-muted">
         <span>${escapeHtml(screen.deviceName)}</span>
-        <span class="standby__dot">•</span>
+        <span class="mx-2 text-accent">•</span>
         <span>${escapeHtml(screen.name)}</span>
       </div>
     </div>
@@ -24,17 +25,3 @@ export const standbyView: ViewRenderer = (container: HTMLElement, screen: Screen
     container.innerHTML = "";
   };
 };
-
-function escapeHtml(input: string): string {
-  return input.replace(
-    /[&<>"']/g,
-    (c) =>
-      ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;",
-      })[c] ?? c,
-  );
-}

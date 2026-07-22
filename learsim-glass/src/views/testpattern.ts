@@ -5,7 +5,7 @@ import type { ScreenState, ViewRenderer } from "./registry.ts";
 // bottom colour-bar strip. Redraws on resize so it always fills the display.
 export const testPatternView: ViewRenderer = (container: HTMLElement, _screen: ScreenState) => {
   const canvas = document.createElement("canvas");
-  canvas.className = "testpattern";
+  canvas.className = "block";
   container.append(canvas);
   const ctx = canvas.getContext("2d");
 

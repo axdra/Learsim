@@ -50,6 +50,10 @@ npm install
 npm run tauri dev
 ```
 
+Frontend stack: **TypeScript + Vite + Tailwind CSS v4** (tokens + component
+classes in `src/styles.css`). Tooling: **ESLint** (`npm run lint`) and
+**Prettier** with Tailwind class sorting (`npm run format`).
+
 ## Build
 
 ```bash

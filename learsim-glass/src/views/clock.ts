@@ -1,4 +1,5 @@
 import type { ScreenState, ViewRenderer } from "./registry.ts";
+import { escapeHtml } from "./util.ts";
 
 // Large clock view. Settings:
 //   hourFormat  "24h" | "12h"   (default "24h")
@@ -13,12 +14,12 @@ export const clockView: ViewRenderer = (container: HTMLElement, screen: ScreenSt
   const timeZone = utc ? "UTC" : undefined;
 
   container.innerHTML = `
-    <div class="clock">
-      <div class="clock__time" id="clock-time">--:--</div>
-      <div class="clock__date" id="clock-date"></div>
-      <div class="clock__id">${escapeHtml(screen.deviceName)} · ${escapeHtml(screen.name)}${
-        utc ? " · ZULU" : ""
-      }</div>
+    <div class="flex flex-col gap-2 text-center">
+      <div id="clock-time" class="text-[clamp(4rem,20vw,16rem)] font-thin leading-none tracking-tight tabular-nums">--:--</div>
+      <div id="clock-date" class="text-[clamp(1rem,3vw,2rem)] tracking-[0.1em] text-muted"></div>
+      <div class="mt-6 text-sm uppercase tracking-[0.14em] text-muted">${escapeHtml(
+        screen.deviceName,
+      )} · ${escapeHtml(screen.name)}${utc ? " · ZULU" : ""}</div>
     </div>
   `;
 
@@ -55,17 +56,3 @@ export const clockView: ViewRenderer = (container: HTMLElement, screen: ScreenSt
     container.innerHTML = "";
   };
 };
-
-function escapeHtml(input: string): string {
-  return input.replace(
-    /[&<>"']/g,
-    (c) =>
-      ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;",
-      })[c] ?? c,
-  );
-}
