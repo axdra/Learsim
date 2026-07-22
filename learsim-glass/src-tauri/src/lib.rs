@@ -84,6 +84,21 @@ pub fn run() {
             }
             app.manage(app_state.clone());
 
+            // Diagnostics: log the resolved URLs and, in debug builds, open the
+            // devtools so a blank window can be inspected from its own console.
+            println!("[glass] app_url = {app_url:?}");
+            for screen in &screens_snapshot {
+                if let Some(w) = handle.get_webview_window(&screen.id) {
+                    println!(
+                        "[glass] window '{}' url = {:?}",
+                        screen.id,
+                        w.url().map(|u| u.to_string())
+                    );
+                    #[cfg(debug_assertions)]
+                    w.open_devtools();
+                }
+            }
+
             // Point each window at its assigned view (self-heals glassout).
             for screen in &screens_snapshot {
                 reconcile::kick(&handle, http.clone(), screen.clone(), app_url.clone());
