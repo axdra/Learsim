@@ -13,6 +13,7 @@
 mod commands;
 mod config;
 mod glassout;
+mod reconcile;
 mod server;
 mod state;
 mod views;
@@ -71,8 +72,11 @@ pub fn run() {
             let port = cfg.port;
             let screens_snapshot = cfg.screens.clone();
 
+            // Shared HTTP client for probing glassout engine health.
+            let http = reqwest::Client::builder().build().unwrap_or_default();
+
             // Publish shared state and persist any first-run provisioning.
-            let app_state = Arc::new(AppState::new(cfg, config_path.clone()));
+            let app_state = Arc::new(AppState::new(cfg, config_path.clone(), http.clone()));
             *app_state.app_url.lock().unwrap() = app_url.clone();
             {
                 let guard = app_state.config.lock().unwrap();
@@ -80,10 +84,13 @@ pub fn run() {
             }
             app.manage(app_state.clone());
 
-            // Point each window at its assigned view.
+            // Point each window at its assigned view (self-heals glassout).
             for screen in &screens_snapshot {
-                windows::apply_screen_view(&handle, screen, app_url.clone());
+                reconcile::kick(&handle, http.clone(), screen.clone(), app_url.clone());
             }
+
+            // Keep glassout screens healed as their engines come and go.
+            reconcile::spawn_monitor(handle.clone(), app_state.clone());
 
             // Start the LAN control server.
             let ctx = Arc::new(server::ServerCtx {

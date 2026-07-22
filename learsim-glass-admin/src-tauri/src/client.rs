@@ -81,6 +81,17 @@ pub fn remove_device(host: String, port: u16, state: State<'_, AdminState>) {
     state.store.remove(&host, port);
 }
 
+/// Lightweight liveness check for the sidebar status dots: `true` if the
+/// device's control server answers `GET /api/health`.
+#[tauri::command]
+pub async fn ping_device(host: String, port: u16, state: State<'_, AdminState>) -> Result<bool, String> {
+    let url = format!("{}/api/health", base_url(&host, port));
+    Ok(matches!(
+        state.http.get(&url).send().await,
+        Ok(resp) if resp.status().is_success()
+    ))
+}
+
 /// Re-fetch a device's live snapshot.
 #[tauri::command]
 pub async fn fetch_device(

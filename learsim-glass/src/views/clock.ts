@@ -4,16 +4,21 @@ import type { ScreenState, ViewRenderer } from "./registry.ts";
 //   hourFormat  "24h" | "12h"   (default "24h")
 //   showSeconds boolean         (default true)
 //   showDate    boolean         (default true)
+//   utc         boolean         (default false) — show UTC / Zulu time
 export const clockView: ViewRenderer = (container: HTMLElement, screen: ScreenState) => {
   const hour12 = screen.settings.hourFormat === "12h";
   const showSeconds = screen.settings.showSeconds !== false;
   const showDate = screen.settings.showDate !== false;
+  const utc = screen.settings.utc === true;
+  const timeZone = utc ? "UTC" : undefined;
 
   container.innerHTML = `
     <div class="clock">
       <div class="clock__time" id="clock-time">--:--</div>
       <div class="clock__date" id="clock-date"></div>
-      <div class="clock__id">${escapeHtml(screen.deviceName)} · ${escapeHtml(screen.name)}</div>
+      <div class="clock__id">${escapeHtml(screen.deviceName)} · ${escapeHtml(screen.name)}${
+        utc ? " · ZULU" : ""
+      }</div>
     </div>
   `;
 
@@ -25,17 +30,19 @@ export const clockView: ViewRenderer = (container: HTMLElement, screen: ScreenSt
     minute: "2-digit",
     ...(showSeconds ? { second: "2-digit" } : {}),
     hour12,
+    timeZone,
   });
   const dateFmt = new Intl.DateTimeFormat(undefined, {
     weekday: "long",
     year: "numeric",
     month: "long",
     day: "numeric",
+    timeZone,
   });
 
   const tick = () => {
     const now = new Date();
-    timeEl.textContent = timeFmt.format(now);
+    timeEl.textContent = utc ? `${timeFmt.format(now)}Z` : timeFmt.format(now);
     dateEl.textContent = showDate ? dateFmt.format(now) : "";
   };
 

@@ -21,6 +21,7 @@ pub fn run() {
             client::list_devices,
             client::add_device,
             client::remove_device,
+            client::ping_device,
             client::fetch_device,
             client::set_screen,
             client::add_screen,

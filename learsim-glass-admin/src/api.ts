@@ -62,6 +62,11 @@ export function removeDevice(host: string, port: number): Promise<void> {
   return invoke("remove_device", { host, port });
 }
 
+/** Liveness check for the sidebar status dots (GET /api/health). */
+export function pingDevice(host: string, port: number): Promise<boolean> {
+  return invoke<boolean>("ping_device", { host, port });
+}
+
 export function fetchDevice(host: string, port: number): Promise<DeviceSnapshot> {
   return invoke<DeviceSnapshot>("fetch_device", { host, port });
 }

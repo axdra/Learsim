@@ -40,6 +40,36 @@ export async function listPanels(engineUrl: string): Promise<EnginePanel[]> {
   return Array.isArray(status.panels) ? status.panels : [];
 }
 
+/**
+ * Build the glassout viewer URL a glass screen will navigate to, mirroring the
+ * display's Rust `build_view_url`. Used for "Copy viewer URL" so an operator
+ * can open the exact same panel in a browser. Returns null if incomplete.
+ */
+export function buildViewerUrl(settings: Record<string, unknown>): string | null {
+  const str = (k: string): string =>
+    typeof settings[k] === "string" ? (settings[k] as string).trim() : "";
+  const base = str("engineUrl").replace(/\/+$/, "");
+  if (!base) return null;
+
+  const path = str("path");
+  if (path) return `${base}${path.startsWith("/") ? "" : "/"}${path}`;
+
+  const panel = str("panelId");
+  if (!panel) return null;
+
+  const query: string[] = [];
+  const fps = str("targetFps");
+  if (fps && /^\d+$/.test(fps)) query.push(`fps=${fps}`);
+  const fit = str("fit");
+  if (fit && fit !== "contain") query.push(`fit=${fit}`);
+  const clickDelay = str("clickDelay");
+  if (clickDelay && /^\d+$/.test(clickDelay)) query.push(`clickDelay=${Math.min(5000, Number(clickDelay))}`);
+  if (settings.debug === true) query.push("debug=1");
+
+  const q = query.length ? `?${query.join("&")}` : "";
+  return `${base}/panel/${encodeURIComponent(panel)}${q}`;
+}
+
 /** A short human-readable health line for the "Test engine" button. */
 export function describeStatus(status: EngineStatus): string {
   const parts: string[] = [];

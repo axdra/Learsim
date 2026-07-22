@@ -17,6 +17,9 @@ shows.
   always matches what that device supports.
 - **Add / remove screens** and **rename** them.
 - Changes are pushed to the device and apply live.
+- **Live status dots** in the sidebar — each device is pinged (`/api/health`)
+  every 15s and shown green (online) / red (offline). Pinging only updates the
+  dots, so it never disturbs edits in progress.
 
 All HTTP to devices goes through the Rust backend (`src-tauri/src/client.rs`),
 so there are no CORS or mixed-content issues.
@@ -29,6 +32,8 @@ When a screen's view is **glassout**, you set the engine URL and panel:
   connection state, and panel count.
 - **List panels** — reads the same `/status` and fills the `panelId`
   autocomplete with the engine's live panel list.
+- **Copy viewer URL** — copies the exact `/panel/{id}?…` URL the screen will
+  show, so you can open it in a browser to verify.
 
 ### No SDK required
 

@@ -4,6 +4,7 @@ import {
   deleteScreen,
   fetchDevice,
   listDevices,
+  pingDevice,
   removeDevice,
   setScreen,
   DEFAULT_CONTROL_PORT,
@@ -12,7 +13,7 @@ import {
   type StoredDevice,
   type ViewField,
 } from "./api.ts";
-import { describeStatus, fetchStatus, listPanels } from "./glassout.ts";
+import { buildViewerUrl, describeStatus, fetchStatus, listPanels } from "./glassout.ts";
 import { clear, h } from "./dom.ts";
 import "./styles.css";
 
@@ -26,8 +27,12 @@ interface Endpoint {
 let devices: StoredDevice[] = [];
 let selected: Endpoint | null = null;
 let snapshot: DeviceSnapshot | null = null;
+// Liveness by "host:port" → online. Undefined = not yet checked.
+const online = new Map<string, boolean>();
 
 const root = document.getElementById("app") as HTMLElement;
+
+const endpointKey = (e: Endpoint): string => `${e.host}:${e.port}`;
 
 function setStatus(msg: string, kind: "info" | "error" = "info") {
   const bar = document.getElementById("statusbar");
@@ -57,14 +62,27 @@ function renderSidebar(): HTMLElement {
     { class: "device-list" },
     ...devices.map((d) => {
       const active = sameEndpoint(selected, d);
+      const status = online.get(endpointKey(d));
+      const dotClass =
+        status === undefined ? "unknown" : status ? "online" : "offline";
       return h(
         "button",
         {
           class: `device-item${active ? " device-item--active" : ""}`,
           onclick: () => selectDevice(d),
         },
-        h("span", { class: "device-item__name" }, d.label ?? `${d.host}`),
-        h("span", { class: "device-item__addr" }, `${d.host}:${d.port}`),
+        h("span", {
+          class: `status-dot status-dot--${dotClass}`,
+          dataset: { ep: endpointKey(d) },
+          title:
+            status === undefined ? "Checking…" : status ? "Online" : "Offline",
+        }),
+        h(
+          "div",
+          { class: "device-item__body" },
+          h("span", { class: "device-item__name" }, d.label ?? `${d.host}`),
+          h("span", { class: "device-item__addr" }, `${d.host}:${d.port}`),
+        ),
         h("span", {
           class: "device-item__remove",
           title: "Forget device",
@@ -344,7 +362,26 @@ function renderGlassoutTools(settings: Record<string, unknown>): HTMLElement {
     "List panels",
   );
 
-  return h("div", { class: "glassout-tools" }, test, discover, result);
+  const copy = h(
+    "button",
+    {
+      class: "btn btn--ghost",
+      type: "button",
+      onclick: async () => {
+        const url = buildViewerUrl(settings);
+        if (!url) return void (result.textContent = "Set engine URL and panel id first.");
+        try {
+          await navigator.clipboard.writeText(url);
+          result.textContent = `Copied: ${url}`;
+        } catch {
+          result.textContent = url;
+        }
+      },
+    },
+    "Copy viewer URL",
+  );
+
+  return h("div", { class: "glassout-tools" }, test, discover, copy, result);
 }
 
 // --- actions ----------------------------------------------------------------
@@ -433,6 +470,35 @@ async function onDeleteScreen(screen: ScreenConfig) {
   }
 }
 
+// --- liveness ---------------------------------------------------------------
+
+// Ping every known device's /api/health and refresh the sidebar dots. Only the
+// sidebar re-renders, so it never clobbers unsaved edits in a screen card.
+async function pingAll() {
+  await Promise.all(
+    devices.map(async (d) => {
+      try {
+        online.set(endpointKey(d), await pingDevice(d.host, d.port));
+      } catch {
+        online.set(endpointKey(d), false);
+      }
+    }),
+  );
+  refreshDots();
+}
+
+// Update the sidebar status dots in place — never rebuilds the sidebar, so a
+// half-typed entry in the add-device form is left untouched.
+function refreshDots() {
+  root.querySelectorAll<HTMLElement>(".status-dot[data-ep]").forEach((dot) => {
+    const key = dot.dataset.ep ?? "";
+    const status = online.get(key);
+    const cls = status === undefined ? "unknown" : status ? "online" : "offline";
+    dot.className = `status-dot status-dot--${cls}`;
+    dot.title = status === undefined ? "Checking…" : status ? "Online" : "Offline";
+  });
+}
+
 // --- boot -------------------------------------------------------------------
 
 async function boot() {
@@ -440,6 +506,8 @@ async function boot() {
   try {
     devices = await listDevices();
     render();
+    pingAll();
+    window.setInterval(pingAll, 15000);
   } catch (err) {
     setStatus(`Could not load devices: ${String(err)}`, "error");
   }

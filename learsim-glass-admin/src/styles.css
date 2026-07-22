@@ -83,8 +83,33 @@ body {
   color: var(--fg);
   cursor: pointer;
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+.device-item__body {
+  display: flex;
   flex-direction: column;
   gap: 2px;
+  min-width: 0;
+}
+.status-dot {
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--muted);
+}
+.status-dot--online {
+  background: var(--ok);
+  box-shadow: 0 0 8px var(--ok);
+}
+.status-dot--offline {
+  background: var(--danger);
+}
+.status-dot--unknown {
+  background: var(--muted);
+  opacity: 0.5;
 }
 .device-item:hover {
   border-color: var(--accent-dim);

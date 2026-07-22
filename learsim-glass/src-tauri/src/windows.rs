@@ -51,59 +51,32 @@ pub fn close_screen_window(app: &AppHandle, screen_id: &str) {
     }
 }
 
-/// Point a screen's window at the right content for its assigned view.
-///
-/// - A `glassout` screen navigates to the engine's viewer URL (top-level
-///   navigation, so a LAN `http://` engine isn't blocked as mixed content).
-/// - Any local view (standby, clock, …) navigates back to our own app document
-///   if the window is currently showing an external URL; otherwise it does
-///   nothing and lets the live `screen-changed` event re-render in place.
-///
-/// `app_url` is the resolved URL of our app document (from `AppState::app_url`).
-/// Must be called on the main thread.
-pub fn apply_screen_view(app: &AppHandle, screen: &ScreenConfig, app_url: Option<String>) {
-    let Some(window) = app.get_webview_window(&screen.id) else {
-        return;
-    };
+/// Navigate a window to `target` unless it is already there. Used to point a
+/// glassout screen at its engine viewer URL. Must run on the main thread.
+pub(crate) fn navigate_if_changed(window: &tauri::WebviewWindow, target: &Url) {
     let current = window.url().ok();
-
-    if screen.view_id == "glassout" {
-        let Some(target) = crate::glassout::build_view_url(&screen.settings) else {
-            // Incomplete glassout settings → fall back to the local app doc.
-            navigate_to_app(&window, current.as_ref(), app_url);
-            return;
-        };
-        if let Ok(url) = Url::parse(&target) {
-            if current.as_ref().map(Url::as_str) != Some(url.as_str()) {
-                if let Err(err) = window.navigate(url) {
-                    eprintln!("[windows] navigate '{}' failed: {err}", screen.id);
-                }
-            }
+    if current.as_ref().map(Url::as_str) != Some(target.as_str()) {
+        if let Err(err) = window.navigate(target.clone()) {
+            eprintln!("[windows] navigate '{}' failed: {err}", window.label());
         }
-    } else {
-        navigate_to_app(&window, current.as_ref(), app_url);
     }
 }
 
-fn navigate_to_app(
-    window: &tauri::WebviewWindow,
-    current: Option<&Url>,
-    app_url: Option<String>,
-) {
-    // Already on our app document → nothing to do (the SPA updates via event).
-    if current.map(is_app_url).unwrap_or(false) {
+/// Ensure a window is showing our own app document (which renders the assigned
+/// local view, or the glassout "connecting…" placeholder). If it already is,
+/// do nothing so the live `screen-changed` event can re-render in place without
+/// a reload. Must run on the main thread.
+pub(crate) fn ensure_on_app(window: &tauri::WebviewWindow, app_url: &Url) {
+    let on_app = window.url().ok().as_ref().map(is_app_url).unwrap_or(false);
+    if on_app {
         return;
     }
-    if let Some(url_str) = app_url {
-        if let Ok(url) = Url::parse(&url_str) {
-            let _ = window.navigate(url);
-        }
-    }
+    let _ = window.navigate(app_url.clone());
 }
 
 /// Whether a URL points at our own bundled app document rather than an external
 /// (glassout engine) page.
-fn is_app_url(url: &Url) -> bool {
+pub(crate) fn is_app_url(url: &Url) -> bool {
     if url.scheme() == "tauri" {
         return true;
     }

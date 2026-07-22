@@ -14,14 +14,17 @@ pub struct AppState {
     /// glass screen can navigate *back* to a local view after having been
     /// pointed at an external glassout engine URL.
     pub app_url: Mutex<Option<String>>,
+    /// Shared HTTP client used to probe glassout engine health (`/status`).
+    pub http: reqwest::Client,
 }
 
 impl AppState {
-    pub fn new(config: AppConfig, config_path: ConfigPath) -> Self {
+    pub fn new(config: AppConfig, config_path: ConfigPath, http: reqwest::Client) -> Self {
         Self {
             config: Mutex::new(config),
             config_path,
             app_url: Mutex::new(None),
+            http,
         }
     }
 

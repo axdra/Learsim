@@ -7,7 +7,7 @@
 //! engine handles frame decode, adaptive quality, and click forwarding.
 //!
 //! So on a glass screen assigned the `glassout` view, we navigate the kiosk
-//! window straight at the engine's viewer URL (see `windows::apply_screen_view`).
+//! window straight at the engine's viewer URL (see `reconcile::reconcile_screen`).
 //! This module is the single place that knows how to turn a screen's settings
 //! into that URL. It mirrors the SDK's `buildPanelUrl` semantics.
 //!

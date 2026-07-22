@@ -91,6 +91,56 @@ body {
   text-transform: uppercase;
 }
 
+/* --- glassout placeholder -------------------------------------------------- */
+.glassout {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.glassout__spinner {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 3px solid var(--muted);
+  border-top-color: var(--accent);
+  animation: glassout-spin 0.9s linear infinite;
+  margin-bottom: 0.4rem;
+}
+@keyframes glassout-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.glassout__title {
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  font-weight: 200;
+  letter-spacing: 0.04em;
+}
+.glassout__detail {
+  color: var(--fg);
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 1rem;
+  opacity: 0.75;
+}
+.glassout__dot {
+  margin: 0 0.5em;
+  color: var(--accent);
+}
+.glassout__id {
+  margin-top: 0.6rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* --- test pattern ---------------------------------------------------------- */
+.testpattern {
+  display: block;
+}
+
 /* --- fatal error ----------------------------------------------------------- */
 .fatal {
   text-align: center;

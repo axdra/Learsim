@@ -105,11 +105,25 @@ see/version the state.
 
 ### Views
 
-| id         | what it shows                                             |
-|------------|-----------------------------------------------------------|
-| `standby`  | Device + screen name (optional custom `message`).         |
-| `clock`    | Large clock (`hourFormat`, `showSeconds`, `showDate`).    |
-| `glassout` | A live MSFS panel from a glassout engine (see below).     |
+| id            | what it shows                                                  |
+|---------------|----------------------------------------------------------------|
+| `standby`     | Device + screen name (optional custom `message`).              |
+| `clock`       | Large clock (`hourFormat`, `showSeconds`, `showDate`, `utc`).  |
+| `testpattern` | Alignment grid, edge frame, centre cross, and colour bars for setting up physical panels/bezels. |
+| `glassout`    | A live MSFS panel from a glassout engine (see below).          |
+
+### Self-healing glassout screens
+
+A glassout screen's window is driven by a background monitor that probes the
+engine's `GET /status` every few seconds:
+
+- **Engine reachable** → the window shows the panel viewer URL.
+- **Engine down / rebooting / not yet configured** → the window shows a branded
+  "connecting to glassout…" placeholder instead of a browser error page, and
+  **recovers automatically** the moment the engine answers again.
+
+So if the sim PC reboots, the cockpit screens ride it out and come back on their
+own — no touch, no restart.
 
 Adding a local view = add a descriptor in `src-tauri/src/views.rs` and a
 renderer in `src/views/`. Both are keyed by the same id.

@@ -198,12 +198,9 @@ async fn delete_screen(
     Ok(StatusCode::NO_CONTENT)
 }
 
-/// Navigate a screen's window to match its (possibly changed) view, on the
-/// main thread.
+/// Navigate a screen's window to match its (possibly changed) view. Runs an
+/// async reconcile so glassout screens probe their engine before committing.
 fn dispatch_apply(ctx: &Arc<ServerCtx>, screen: ScreenConfig) {
-    let app = ctx.app.clone();
     let app_url = ctx.state.app_url.lock().unwrap().clone();
-    let _ = ctx.app.run_on_main_thread(move || {
-        windows::apply_screen_view(&app, &screen, app_url);
-    });
+    crate::reconcile::kick(&ctx.app, ctx.state.http.clone(), screen, app_url);
 }

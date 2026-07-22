@@ -95,7 +95,7 @@ pub fn view_manifest() -> Vec<ViewDescriptor> {
         ViewDescriptor {
             id: "clock".into(),
             name: "Clock".into(),
-            description: "Large clock with optional seconds and date.".into(),
+            description: "Large clock with optional seconds, date, and UTC/Zulu.".into(),
             fields: vec![
                 field_select(
                     "hourFormat",
@@ -105,7 +105,15 @@ pub fn view_manifest() -> Vec<ViewDescriptor> {
                 ),
                 field_bool("showSeconds", "Show seconds", true),
                 field_bool("showDate", "Show date", true),
+                field_bool("utc", "UTC / Zulu time", false),
             ],
+        },
+        ViewDescriptor {
+            id: "testpattern".into(),
+            name: "Test pattern".into(),
+            description: "Alignment grid, edge frame, and colour bars for setting up panels."
+                .into(),
+            fields: vec![],
         },
         // --- glassout integration -------------------------------------------
         // A glassout view shows a live MSFS panel captured by a glassout engine
