@@ -19,6 +19,23 @@ pub fn create_screen_window(app: &AppHandle, screen: &ScreenConfig) -> tauri::Re
         .title(format!("learsim-glass · {}", screen.name))
         .decorations(false)
         .resizable(false)
+        // Capture the *real* app-document URL the first time it loads (never
+        // the transient "about:blank"), so glassout screens can later navigate
+        // back to a local view. Reading `window.url()` right after build would
+        // return about:blank — navigating to that cancels the page load.
+        .on_page_load(|webview, payload| {
+            let url = payload.url();
+            if is_app_url(url) {
+                if let Some(state) =
+                    webview.app_handle().try_state::<std::sync::Arc<crate::state::AppState>>()
+                {
+                    let mut guard = state.app_url.lock().unwrap();
+                    if guard.is_none() {
+                        *guard = Some(url.to_string());
+                    }
+                }
+            }
+        })
         .build()?;
 
     // Pin to the requested monitor, if any, before fullscreening.

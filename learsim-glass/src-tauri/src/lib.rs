@@ -42,15 +42,11 @@ pub fn run() {
                     .push(config::ScreenConfig::new("screen-1", "Screen 1", Some(0)));
             }
 
-            // Create the first window (loads our app document).
+            // Create the first window (loads our app document). The app-document
+            // URL is captured lazily via the window's on_page_load handler (see
+            // windows.rs) — reading it synchronously here would return the
+            // transient "about:blank" and navigating to that blanks the window.
             windows::create_screen_window(&handle, &cfg.screens[0])?;
-
-            // Capture the resolved app URL so local views can navigate back to
-            // it after a screen has been pointed at an external glassout URL.
-            let app_url = handle
-                .get_webview_window(&cfg.screens[0].id)
-                .and_then(|w| w.url().ok())
-                .map(|u| u.to_string());
 
             // First run: provision one screen per additional monitor.
             if !existed {
@@ -77,31 +73,27 @@ pub fn run() {
 
             // Publish shared state and persist any first-run provisioning.
             let app_state = Arc::new(AppState::new(cfg, config_path.clone(), http.clone()));
-            *app_state.app_url.lock().unwrap() = app_url.clone();
             {
                 let guard = app_state.config.lock().unwrap();
                 let _ = config::save(&config_path, &*guard);
             }
             app.manage(app_state.clone());
 
-            // Diagnostics: log the resolved URLs and, in debug builds, open the
-            // devtools so a blank window can be inspected from its own console.
-            println!("[glass] app_url = {app_url:?}");
+            // In debug builds, open devtools so a window can be inspected.
+            #[cfg(debug_assertions)]
             for screen in &screens_snapshot {
                 if let Some(w) = handle.get_webview_window(&screen.id) {
-                    println!(
-                        "[glass] window '{}' url = {:?}",
-                        screen.id,
-                        w.url().map(|u| u.to_string())
-                    );
-                    #[cfg(debug_assertions)]
                     w.open_devtools();
                 }
             }
 
             // Point each window at its assigned view (self-heals glassout).
+            // `app_url` may still be None here (captured on first page load);
+            // that's fine — reconcile never navigates to an unknown URL, so the
+            // window completes its own load to the app document.
             for screen in &screens_snapshot {
-                reconcile::kick(&handle, http.clone(), screen.clone(), app_url.clone());
+                let app_url = app_state.app_url.lock().unwrap().clone();
+                reconcile::kick(&handle, http.clone(), screen.clone(), app_url);
             }
 
             // Keep glassout screens healed as their engines come and go.
