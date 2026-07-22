@@ -73,6 +73,11 @@ pub fn build_view_url(settings: &Map<String, Value>) -> Option<String> {
             query.push(format!("fit={fit}"));
         }
     }
+    // Hover delay before a synthesised click fires. Omitted → engine default
+    // (300ms). Clamped to the engine's documented 0..=5000 range.
+    if let Some(delay) = setting_number(settings, "clickDelay") {
+        query.push(format!("clickDelay={}", delay.min(5000)));
+    }
     if setting_bool(settings, "debug") {
         query.push("debug=1".to_string());
     }
@@ -116,11 +121,12 @@ mod tests {
             "panelId": "PFD_Captain",
             "fit": "stretch",
             "targetFps": 60,
+            "clickDelay": 0,
             "debug": true
         }));
         assert_eq!(
             build_view_url(&s).unwrap(),
-            "http://192.168.1.42:8787/panel/PFD_Captain?fps=60&fit=stretch&debug=1"
+            "http://192.168.1.42:8787/panel/PFD_Captain?fps=60&fit=stretch&clickDelay=0&debug=1"
         );
     }
 

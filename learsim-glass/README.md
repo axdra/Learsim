@@ -122,6 +122,7 @@ renderer in `src/views/`. Both are keyed by the same id.
 | `panelId`   | Panel to show, e.g. `PFD_Captain`.                            |
 | `fit`       | `contain` (letterbox) / `stretch` / `native`.                 |
 | `targetFps` | Per-viewer FPS cap, 10–120.                                    |
+| `clickDelay`| Hover delay (ms, 0–5000) before a touch click fires. Blank → engine default (300). Use `0` for gauges, `300–500` for touch instruments (e.g. G3000 GTC). |
 | `debug`     | Enable the engine's latency overlay.                          |
 | `path`      | Advanced: a ready-made viewer path (`/canvas?…`, `/instance/…`) that overrides the panel fields. |
 

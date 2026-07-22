@@ -134,6 +134,10 @@ pub fn view_manifest() -> Vec<ViewDescriptor> {
                     "contain",
                 ),
                 field_text("targetFps", "Target FPS (10–120)", "30"),
+                // Hover delay before a synthesised click fires. Blank → the
+                // engine default (300ms). 0 for instant gauges (most PFD/ND);
+                // ~300–500 for touch instruments (e.g. G3000 GTC).
+                field_text("clickDelay", "Click delay ms (blank = engine default)", ""),
                 field_bool("debug", "Latency overlay", false),
                 // Advanced: a ready-made viewer path (e.g. "/canvas?..." or
                 // "/instance/...") produced by the admin via the SDK URL
