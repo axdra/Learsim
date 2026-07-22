@@ -359,12 +359,14 @@ function renderGlassoutTools(settings: Record<string, unknown>): HTMLElement {
       class: "btn btn--ghost",
       type: "button",
       onclick: async (e: Event) => {
+        // Capture the button now: after the await, e.currentTarget is null.
+        const button = e.currentTarget as HTMLElement;
         const engineUrl = String(settings.engineUrl ?? "");
         if (!engineUrl) return void (result.textContent = "Set an engine URL first.");
         result.textContent = "Listing panels…";
         try {
           const panels = await listPanels(engineUrl);
-          const dl = cardDatalist(e.currentTarget as HTMLElement);
+          const dl = cardDatalist(button);
           if (dl) {
             clear(dl);
             panels.forEach((p) =>
