@@ -2,3 +2,12 @@ Touch/pyvenv.cfg
 Touch/Scripts
 Touch/Lib
 Touch/Include
+
+# Node / Vite (glass apps)
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Rust / Tauri
+target/
+**/src-tauri/gen/
