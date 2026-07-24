@@ -58,7 +58,7 @@
 			(property "Description" "Generic screw terminal, 2 pins" (at 0 0 0) (hide yes) (effects (font (size 1.27 1.27))))
 			(symbol "Screw_Terminal_01x02_1_1"
 				(rectangle (start -1.27 3.81) (end 1.27 -1.27)
-					(stroke (width 0.254) (type default)) (fill (type (color 0 0 0 0))))
+					(stroke (width 0.254) (type default)) (fill (type none)))
 				(pin passive line (at -5.08 2.54 0) (length 3.81)
 					(name "Pin_1" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))
 				(pin passive line (at -5.08 0 0) (length 3.81)
