@@ -2,4 +2,5 @@
 	(version 7)
 	(lib (name "ESP32-Pico") (type "KiCad") (uri "${KIPRJMOD}/libraries/ESP32-C6-Pico.pretty") (options "") (descr ""))
 	(lib (name "7-Segment Display") (type "KiCad") (uri "${KIPRJMOD}/libraries/LED-6DIGIT-0.36in-CC_14P.pretty") (options "") (descr ""))
+	(lib (name "Rotary") (type "KiCad") (uri "${KIPRJMOD}/libraries/lcsc-parts/easyeda2kicad.pretty") (options "") (descr ""))
 )
