@@ -82,6 +82,20 @@ E=3, F=10, G=6, DP=2; digits DIG1..6 = 14,13,12,9,8,5).
 (R9–R14) and a 100 nF cap to GND (C13–C18), forming a ~1 ms RC low-pass that cleans
 contact bounce in hardware. Buttons are debounced in firmware.
 
+**Through-hole footprints (this iteration).** All added passives use THT footprints for
+easy hand-assembly:
+
+| Part | Footprint |
+|------|-----------|
+| R1–R14 | `Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal` (1/4 W axial) |
+| 100 nF (C2, C4, C5, C7–C18) | `Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm` (ceramic disc) |
+| 10 µF (C1, C3) | `Capacitor_THT:CP_Radial_D5.0mm_P2.50mm` (electrolytic) |
+| 100 µF (C6) | `Capacitor_THT:CP_Radial_D6.3mm_P2.50mm` (electrolytic) |
+| J1 | `TerminalBlock:TerminalBlock_bornier-2_P5.08mm` |
+
+The 10 µF / 100 µF caps (C1, C3, C6) are electrolytic and **polarized** — the terminal on
+the `+5V` net is the **+** side. The SK6812 RGB LEDs remain SMD (no THT part exists).
+
 ## Design notes / to verify before fab
 
 - **3.3 V logic vs 5 V rails.** MAX7219 V+ and SK6812 VDD are at 5 V while the
