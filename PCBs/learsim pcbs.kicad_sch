@@ -12701,6 +12701,157 @@
 			)
 		)
 	)
+	(symbol
+		(lib_id "Device:R")
+		(at 236.0 200.0 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "a71694ec-3685-43bc-a56b-00d7fd95d45e")
+		(property "Reference" "R15"
+			(at 239.81 198.73 0)
+			(effects (font (size 1.27 1.27)) (justify left))
+		)
+		(property "Value" "10k"
+			(at 239.81 201.27 0)
+			(effects (font (size 1.27 1.27)) (justify left))
+		)
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+			(at 236.0 200.0 0)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Datasheet" "~"
+			(at 236.0 200.0 0)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(pin "1"
+			(uuid "e594eea7-9f20-4d0d-b364-1a8572336a91")
+		)
+		(pin "2"
+			(uuid "baa34c98-28e0-4763-bca3-c7e4a3b6a616")
+		)
+		(instances
+			(project "learsim pcbs"
+				(path "/27520048-f2d9-41fa-a766-14782a208ac0"
+					(reference "R15")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 250.0 200.0 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "4d974e53-a104-43ae-bd4b-3a4e152de1cf")
+		(property "Reference" "R16"
+			(at 253.81 198.73 0)
+			(effects (font (size 1.27 1.27)) (justify left))
+		)
+		(property "Value" "10k"
+			(at 253.81 201.27 0)
+			(effects (font (size 1.27 1.27)) (justify left))
+		)
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+			(at 250.0 200.0 0)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Datasheet" "~"
+			(at 250.0 200.0 0)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(pin "1"
+			(uuid "9d94bb0d-8e74-4907-a505-cd8657b640fe")
+		)
+		(pin "2"
+			(uuid "2c738b51-f3f7-4c38-b6ed-4312bd3b5a1d")
+		)
+		(instances
+			(project "learsim pcbs"
+				(path "/27520048-f2d9-41fa-a766-14782a208ac0"
+					(reference "R16")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "GND"
+		(shape bidirectional)
+		(at 26.67 96.52 90)
+		(fields_autoplaced yes)
+		(effects (font (size 1.27 1.27)) (justify left))
+		(uuid "2ae31795-816b-4fc7-808a-83d65b9af968")
+	)
+	(global_label "SW3_A"
+		(shape bidirectional)
+		(at 24.13 106.68 270)
+		(fields_autoplaced yes)
+		(effects (font (size 1.27 1.27)) (justify left))
+		(uuid "6958b2c1-f9b4-47c2-95dc-e23988280888")
+	)
+	(global_label "SW3_A"
+		(shape bidirectional)
+		(at 147.32 97.79 0)
+		(fields_autoplaced yes)
+		(effects (font (size 1.27 1.27)) (justify left))
+		(uuid "3151b290-80f3-4db1-8347-8a3fda0d941b")
+	)
+	(global_label "SW3_A"
+		(shape bidirectional)
+		(at 236.0 196.19 90)
+		(fields_autoplaced yes)
+		(effects (font (size 1.27 1.27)) (justify left))
+		(uuid "c0957d4e-25df-4bd9-8ed1-4582f45b3055")
+	)
+	(global_label "SW3_B"
+		(shape bidirectional)
+		(at 29.21 106.68 270)
+		(fields_autoplaced yes)
+		(effects (font (size 1.27 1.27)) (justify left))
+		(uuid "9776ae16-c7f8-4722-9250-5278f78ad9b1")
+	)
+	(global_label "SW3_B"
+		(shape bidirectional)
+		(at 147.32 100.33 0)
+		(fields_autoplaced yes)
+		(effects (font (size 1.27 1.27)) (justify left))
+		(uuid "10ad5d62-b1d2-46fc-adf1-0f3bfd6baa0b")
+	)
+	(global_label "SW3_B"
+		(shape bidirectional)
+		(at 250.0 196.19 90)
+		(fields_autoplaced yes)
+		(effects (font (size 1.27 1.27)) (justify left))
+		(uuid "0ce80613-b2f6-40df-9c7d-ae002cabc980")
+	)
+	(global_label "+3V3"
+		(shape bidirectional)
+		(at 236.0 203.81 270)
+		(fields_autoplaced yes)
+		(effects (font (size 1.27 1.27)) (justify left))
+		(uuid "b8c34a91-af67-4e92-93b6-47ea935fa00e")
+	)
+	(global_label "+3V3"
+		(shape bidirectional)
+		(at 250.0 203.81 270)
+		(fields_autoplaced yes)
+		(effects (font (size 1.27 1.27)) (justify left))
+		(uuid "c2aa0c32-9e26-4c16-8ca8-63b8516b782f")
+	)
 	(sheet_instances
 		(path "/"
 			(page "1")

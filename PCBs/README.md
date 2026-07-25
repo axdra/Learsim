@@ -39,10 +39,17 @@ added to connect the previously-placed (but unwired) parts.
 | Encoder KHz A / B   | GPIO18 / 19  | ENC2_A/B  |
 | Encoder KHz push    | GPIO20       | ENC2_SW   |
 | Buttons ×6          | EXIO1..EXIO6 | BTN_*     |
+| SW3 toggle throw 1  | GPIO8        | SW3_A     |
+| SW3 toggle throw 2  | GPIO9        | SW3_B     |
 | Power in            | Vsys (+5V)   | +5V       |
 | Logic rail          | 3V3          | +3V3      |
 
-Spare, broken-out pins for expansion: TX, RX, GPIO8, GPIO9, GPIO14, EXIO7.
+Spare, broken-out pins for expansion: TX, RX, GPIO14, EXIO7.
+
+**SW3 (SPDT toggle).** Common pole (pin 2) → GND; each throw read on its own GPIO with a
+10 kΩ pull-up to +3V3 (pin 1 → GPIO8 via R15, pin 3 → GPIO9 via R16). A throw reads LOW when
+selected and HIGH otherwise, so firmware can distinguish both positions (and a centre-OFF
+state if the part has one).
 
 ## MAX7219 ↔ display wiring (common-cathode)
 
