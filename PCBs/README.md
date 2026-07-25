@@ -39,17 +39,21 @@ added to connect the previously-placed (but unwired) parts.
 | Encoder KHz A / B   | GPIO18 / 19  | ENC2_A/B  |
 | Encoder KHz push    | GPIO20       | ENC2_SW   |
 | Buttons ×6          | EXIO1..EXIO6 | BTN_*     |
-| SW3 toggle throw 1  | GPIO8        | SW3_A     |
-| SW3 toggle throw 2  | GPIO9        | SW3_B     |
+| SW3 toggle throw 1  | GPIO14       | SW3_A     |
+| SW3 toggle throw 2  | EXIO7        | SW3_B     |
 | Power in            | Vsys (+5V)   | +5V       |
 | Logic rail          | 3V3          | +3V3      |
 
-Spare, broken-out pins for expansion: TX, RX, GPIO14, EXIO7.
+Spare, broken-out pins for expansion: TX, RX, GPIO8, GPIO9.
 
-**SW3 (SPDT toggle).** Common pole (pin 2) → GND; each throw read on its own GPIO with a
-10 kΩ pull-up to +3V3 (pin 1 → GPIO8 via R15, pin 3 → GPIO9 via R16). A throw reads LOW when
-selected and HIGH otherwise, so firmware can distinguish both positions (and a centre-OFF
-state if the part has one).
+**SW3 (SPDT toggle).** Common pole (pin 2) → GND; each throw read with a 10 kΩ pull-up to
++3V3 (pin 1 → GPIO14 via R15, pin 3 → EXIO7 via R16). A throw reads LOW when selected and
+HIGH otherwise, so firmware can distinguish both positions (and a centre-OFF state if the
+part has one). **Note:** SW3 is deliberately kept off GPIO8/GPIO9 — those are ESP32-C6
+strapping/boot pins (GPIO9 selects download mode), and a switch that can hold one low at
+reset would stop the board booting. GPIO14 is a normal GPIO and EXIO7 is on the TCA9554
+expander, so neither affects boot. (ENC1_A remains on GPIO15, also a strapping pin, but an
+idling encoder there is low-risk and GPIO15 is not boot-critical.)
 
 ## MAX7219 ↔ display wiring (common-cathode)
 
@@ -80,7 +84,7 @@ E=3, F=10, G=6, DP=2; digits DIG1..6 = 14,13,12,9,8,5).
 | C1, C3 | 10 µF | MAX7219 V+ bulk decoupling |
 | C2, C4 | 100 nF | MAX7219 V+ HF decoupling |
 | C5 | 100 nF | ESP32 3V3 decoupling |
-| C6 | 100 µF | +5V input bulk cap at J1 |
+| C6 | 220 µF | +5V input bulk reservoir at J1 |
 | C7–C12 | 100 nF | one per SK6812 (VDD–VSS) |
 | C13–C18 | 100 nF | RC debounce cap on each encoder A / B / push line |
 | J1 | 2-pin screw terminal | +5V / GND power input |
@@ -97,10 +101,10 @@ easy hand-assembly:
 | R1–R14 | `Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal` (1/4 W axial) |
 | 100 nF (C2, C4, C5, C7–C18) | `Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm` (ceramic disc) |
 | 10 µF (C1, C3) | `Capacitor_THT:CP_Radial_D5.0mm_P2.50mm` (electrolytic) |
-| 100 µF (C6) | `Capacitor_THT:CP_Radial_D6.3mm_P2.50mm` (electrolytic) |
+| 220 µF (C6) | `Capacitor_THT:CP_Radial_D6.3mm_P2.50mm` (electrolytic) |
 | J1 | `TerminalBlock:TerminalBlock_bornier-2_P5.08mm` |
 
-The 10 µF / 100 µF caps (C1, C3, C6) are electrolytic and **polarized** — the terminal on
+The 10 µF / 220 µF caps (C1, C3, C6) are electrolytic and **polarized** — the terminal on
 the `+5V` net is the **+** side. The SK6812 RGB LEDs remain SMD (no THT part exists).
 
 ## Design notes / to verify before fab
