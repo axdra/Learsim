@@ -6654,30 +6654,6 @@
 			)
 		)
 	)
-	(global_label "GND"
-		(shape bidirectional)
-		(at 290 94.93 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "db5d2f80-d661-4d2e-bac5-b710016750b1")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 282.033 94.93 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-	)
 	(global_label "ENC2_SW"
 		(shape bidirectional)
 		(at 290 140.65 180)
@@ -7296,30 +7272,6 @@
 			)
 		)
 	)
-	(global_label "+5V"
-		(shape bidirectional)
-		(at 290 87.31 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "fb691987-a33a-47e2-afff-45716e5c56c1")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 282.033 87.31 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-	)
 	(global_label "U3_SEG_DP"
 		(shape bidirectional)
 		(at 144.78 175.26 180)
@@ -7413,86 +7365,6 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 290 91.12 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "05009cb3-d925-4041-bc22-fec066a02467")
-		(property "Reference" "C6"
-			(at 293.81 91.12 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "100uF"
-			(at 293.81 93.32 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm"
-			(at 290 91.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 290 91.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 290 91.12 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "d19b61a0-8170-4ea1-9557-cf046d8b351c")
-		)
-		(pin "2"
-			(uuid "0ef38285-2223-4d29-95a9-c5be5984d60b")
-		)
-		(instances
-			(project "learsim pcbs"
-				(path "/27520048-f2d9-41fa-a766-14782a208ac0"
-					(reference "C6")
-					(unit 1)
-				)
 			)
 		)
 	)
@@ -8110,7 +7982,7 @@
 	)
 	(symbol
 		(lib_id "Rotary:2MS1T1B1M2QES-5")
-		(at 24.13 48.26 0)
+		(at 25.4 101.6 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8121,7 +7993,7 @@
 		(fields_autoplaced yes)
 		(uuid "2bbd6cc6-01ba-4959-ac80-41f070ba1ecc")
 		(property "Reference" "SW3"
-			(at 29.21 46.9899 0)
+			(at 30.48 100.3299 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8132,7 +8004,7 @@
 			)
 		)
 		(property "Value" "2MS1T1B1M2QES-5"
-			(at 29.21 49.5299 0)
+			(at 30.48 102.8699 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8143,7 +8015,7 @@
 			)
 		)
 		(property "Footprint" "Rotary:SW-TH_2MS1T1B1M2QES-5"
-			(at 24.13 60.96 0)
+			(at 25.4 114.3 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8154,7 +8026,7 @@
 			)
 		)
 		(property "Datasheet" "https://lcsc.com/product-detail/Toggle-Switches_Dailywell-2MS1T1B1M2QES-5_C908280.html"
-			(at 24.13 63.5 0)
+			(at 25.4 116.84 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8165,7 +8037,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 24.13 48.26 0)
+			(at 25.4 101.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8176,7 +8048,7 @@
 			)
 		)
 		(property "Manufacturer" "Dailywell(德利威)"
-			(at 24.13 66.04 0)
+			(at 25.4 119.38 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8187,7 +8059,7 @@
 			)
 		)
 		(property "MPN" "2MS1T1B1M2QES-5"
-			(at 24.13 68.58 0)
+			(at 25.4 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8198,7 +8070,7 @@
 			)
 		)
 		(property "LCSC Part" "C908280"
-			(at 24.13 71.12 0)
+			(at 25.4 124.46 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
