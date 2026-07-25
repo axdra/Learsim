@@ -11,7 +11,7 @@ added to connect the previously-placed (but unwired) parts.
 ## Block diagram
 
 ```
-                +5V ── J1 ─┬─ ESP32-C6 Vsys/Vbus
+         USB-C 5V ── Vbus ─┬─ ESP32-C6 (Vsys)
                            ├─ MAX7219 U2/U3  V+
                            └─ SK6812 D1..D6  VDD
  ESP32-C6 (U1)
@@ -41,7 +41,7 @@ added to connect the previously-placed (but unwired) parts.
 | Buttons ×6          | EXIO1..EXIO6 | BTN_*     |
 | SW3 toggle throw 1  | GPIO14       | SW3_A     |
 | SW3 toggle throw 2  | EXIO7        | SW3_B     |
-| Power in            | Vsys (+5V)   | +5V       |
+| Power in            | USB-C (Vbus) | +5V       |
 | Logic rail          | 3V3          | +3V3      |
 
 Spare, broken-out pins for expansion: TX, RX, GPIO8, GPIO9.
@@ -84,10 +84,9 @@ E=3, F=10, G=6, DP=2; digits DIG1..6 = 14,13,12,9,8,5).
 | C1, C3 | 10 µF | MAX7219 V+ bulk decoupling |
 | C2, C4 | 100 nF | MAX7219 V+ HF decoupling |
 | C5 | 100 nF | ESP32 3V3 decoupling |
-| C6 | 220 µF | +5V input bulk reservoir at J1 |
+| C6 | 220 µF | +5V rail bulk reservoir (near USB input) |
 | C7–C12 | 100 nF | one per SK6812 (VDD–VSS) |
 | C13–C18 | 100 nF | RC debounce cap on each encoder A / B / push line |
-| J1 | 2-pin screw terminal | +5V / GND power input |
 
 **Encoder debounce:** each encoder A, B and push line has a 10 kΩ pull-up to +3V3
 (R9–R14) and a 100 nF cap to GND (C13–C18), forming a ~1 ms RC low-pass that cleans
@@ -102,7 +101,6 @@ easy hand-assembly:
 | 100 nF (C2, C4, C5, C7–C18) | `Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm` (ceramic disc) |
 | 10 µF (C1, C3) | `Capacitor_THT:CP_Radial_D5.0mm_P2.50mm` (electrolytic) |
 | 220 µF (C6) | `Capacitor_THT:CP_Radial_D6.3mm_P2.50mm` (electrolytic) |
-| J1 | `TerminalBlock:TerminalBlock_bornier-2_P5.08mm` |
 
 The 10 µF / 220 µF caps (C1, C3, C6) are electrolytic and **polarized** — the terminal on
 the `+5V` net is the **+** side. The SK6812 RGB LEDs remain SMD (no THT part exists).
@@ -113,9 +111,11 @@ the `+5V` net is the **+** side. The SK6812 RGB LEDs remain SMD (no THT part exi
   ESP32 drives 3.3 V logic. This usually works but is marginally out of MAX7219 VIH
   spec; for robustness either run the MAX7219 / first SK6812 at ~3.3–4.3 V, or add a
   level shifter on DIN/CLK/LOAD and the LED data line.
-- **USB vs J1.** The original design ties +5V to the ESP32 Vbus pin; this schematic
-  also feeds Vsys from J1. Do not power from USB and the J1 5 V terminal
-  simultaneously unless the two 5 V sources are isolated.
+- **Powered from USB-C.** The board runs entirely off the ESP32-C6 module's USB-C:
+  the +5V rail is fed from the module's Vbus pin. Note the full board (2× MAX7219,
+  6× SK6812 at up to ~60 mA each, plus displays) can pull several hundred mA — make sure
+  the host/cable and the module's Vbus path can supply it; consider the SK6812 brightness
+  cap in firmware if the USB source is current-limited.
 - **Encoder pinout.** EC12E2430803 is wired A/B = quadrature, C = common (GND),
   D/E = push switch. Confirm A/C pin identity against the specific part's datasheet.
 
