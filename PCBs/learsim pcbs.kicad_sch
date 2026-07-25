@@ -2099,14 +2099,14 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Rotary:1FS1T1B9M2RES-5"
+		(symbol "Rotary:2MS1T1B1M2QES-5"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "SW"
-				(at 0 0 0)
+				(at 0 10.16 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
@@ -2115,7 +2115,7 @@
 					)
 				)
 			)
-			(property "Value" "1FS1T1B9M2RES-5"
+			(property "Value" "2MS1T1B1M2QES-5"
 				(at 0 -10.16 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2125,7 +2125,7 @@
 					)
 				)
 			)
-			(property "Footprint" "easyeda2kicad:SW-TH_1FS1T1B9M2RES-5"
+			(property "Footprint" "easyeda2kicad:SW-TH_2MS1T1B1M2QES-5"
 				(at 0 -12.7 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2136,7 +2136,7 @@
 					)
 				)
 			)
-			(property "Datasheet" "https://lcsc.com/product-detail/New-Arrivals_Dailywell-1FS1T1B9M2RES-5_C496164.html"
+			(property "Datasheet" "https://lcsc.com/product-detail/Toggle-Switches_Dailywell-2MS1T1B1M2QES-5_C908280.html"
 				(at 0 -15.24 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2169,7 +2169,7 @@
 					)
 				)
 			)
-			(property "MPN" "1FS1T1B9M2RES-5"
+			(property "MPN" "2MS1T1B1M2QES-5"
 				(at 0 -20.32 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2180,7 +2180,7 @@
 					)
 				)
 			)
-			(property "LCSC Part" "C496164"
+			(property "LCSC Part" "C908280"
 				(at 0 -22.86 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2202,21 +2202,10 @@
 					)
 				)
 			)
-			(symbol "1FS1T1B9M2RES-5_0_1"
-				(rectangle
-					(start -5.08 2.54)
-					(end 5.08 -2.54)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
+			(symbol "2MS1T1B1M2QES-5_0_1"
 				(circle
-					(center -3.81 -1.27)
-					(radius 0.38)
+					(center -1.27 -1.27)
+					(radius 0.51)
 					(stroke
 						(width 0)
 						(type default)
@@ -2225,19 +2214,90 @@
 						(type none)
 					)
 				)
-				(rectangle
-					(start -2.54 6.35)
-					(end 0 2.54)
+				(polyline
+					(pts
+						(xy -1.27 -1.78) (xy -1.27 -2.54)
+					)
 					(stroke
 						(width 0)
 						(type default)
 					)
 					(fill
-						(type background)
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.02 0.25) (xy 3.3 0.25)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.02 1.02) (xy 3.05 -1.52)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 2.03) (xy 1.27 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 1.27 1.52)
+					(radius 0.51)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 3.81 -1.27)
+					(radius 0.51)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 3.81 -1.78) (xy 3.81 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
 					)
 				)
 				(pin unspecified line
-					(at -2.54 -5.08 90)
+					(at -1.27 -5.08 90)
 					(length 2.54)
 					(name "1"
 						(effects
@@ -2255,7 +2315,7 @@
 					)
 				)
 				(pin unspecified line
-					(at 0 -5.08 90)
+					(at 1.27 5.08 270)
 					(length 2.54)
 					(name "2"
 						(effects
@@ -2273,7 +2333,7 @@
 					)
 				)
 				(pin unspecified line
-					(at 2.54 -5.08 90)
+					(at 3.81 -5.08 90)
 					(length 2.54)
 					(name "3"
 						(effects
@@ -3927,17 +3987,17 @@
 	)
 	(global_label "U2_ISET"
 		(shape bidirectional)
-		(at 90.17 125.73 90)
+		(at 49.53 146.05 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "2de2915f-2a11-4a57-af18-89ee70d836cc")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 90.17 114.195 90)
+			(at 49.53 157.585 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3945,7 +4005,7 @@
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
 	)
@@ -7357,124 +7417,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Rotary:1FS1T1B9M2RES-5")
-		(at 35.56 72.39 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "02071492-74eb-47a3-be27-594aedfe6302")
-		(property "Reference" "SW3"
-			(at 41.91 69.2149 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "1FS1T1B9M2RES-5"
-			(at 41.91 71.7549 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Rotary:SW-TH_1FS1T1B9M2RES-5"
-			(at 35.56 85.09 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://lcsc.com/product-detail/New-Arrivals_Dailywell-1FS1T1B9M2RES-5_C496164.html"
-			(at 35.56 87.63 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 35.56 72.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "Dailywell(德利威)"
-			(at 35.56 90.17 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "1FS1T1B9M2RES-5"
-			(at 35.56 92.71 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part" "C496164"
-			(at 35.56 95.25 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "3"
-			(uuid "9c00f063-3dc4-4c72-8ea2-1d29b6379357")
-		)
-		(pin "2"
-			(uuid "38abd915-96ee-4e2e-9490-a188dcbfc82f")
-		)
-		(pin "1"
-			(uuid "df76a772-3159-4c77-aa24-2a4571a129cb")
-		)
-		(instances
-			(project "learsim pcbs"
-				(path "/27520048-f2d9-41fa-a766-14782a208ac0"
-					(reference "SW3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C")
 		(at 290 91.12 0)
 		(unit 1)
@@ -8161,6 +8103,124 @@
 			(project "learsim pcbs"
 				(path "/27520048-f2d9-41fa-a766-14782a208ac0"
 					(reference "R9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Rotary:2MS1T1B1M2QES-5")
+		(at 24.13 48.26 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "2bbd6cc6-01ba-4959-ac80-41f070ba1ecc")
+		(property "Reference" "SW3"
+			(at 29.21 46.9899 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "2MS1T1B1M2QES-5"
+			(at 29.21 49.5299 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Rotary:SW-TH_2MS1T1B1M2QES-5"
+			(at 24.13 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://lcsc.com/product-detail/Toggle-Switches_Dailywell-2MS1T1B1M2QES-5_C908280.html"
+			(at 24.13 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 24.13 48.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Dailywell(德利威)"
+			(at 24.13 66.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "2MS1T1B1M2QES-5"
+			(at 24.13 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part" "C908280"
+			(at 24.13 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "3"
+			(uuid "e1ba285f-196f-4c63-b7a3-0d46f7cd5ecc")
+		)
+		(pin "2"
+			(uuid "42925111-d78c-4c32-9d3e-a03b5e206eb0")
+		)
+		(pin "1"
+			(uuid "8d94bf6a-3f61-4cc3-a588-a37faf27b9f9")
+		)
+		(instances
+			(project "learsim pcbs"
+				(path "/27520048-f2d9-41fa-a766-14782a208ac0"
+					(reference "SW3")
 					(unit 1)
 				)
 			)
