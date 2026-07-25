@@ -5394,7 +5394,7 @@
 	)
 	(global_label "MAX_CHAIN"
 		(shape bidirectional)
-		(at 90.17 146.05 0)
+		(at 90.17 125.73 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5404,7 +5404,7 @@
 		)
 		(uuid "89f27c0d-075e-4c92-a4bf-ca90cfd239fc")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 104.608 146.05 0)
+			(at 104.608 125.73 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
