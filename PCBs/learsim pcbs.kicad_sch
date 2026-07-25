@@ -4583,17 +4583,17 @@
 	)
 	(global_label "+5V"
 		(shape bidirectional)
-		(at 215.9 137.16 0)
+		(at 165.1 137.16 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "4d7fefbc-68c7-4287-b2a6-0249b0d009c6")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 215.9 137.16 0)
+			(at 157.133 137.16 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4601,6 +4601,7 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
 	)
@@ -4701,17 +4702,17 @@
 	)
 	(global_label "GND"
 		(shape bidirectional)
-		(at 165.1 137.16 180)
+		(at 215.9 137.16 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "5b7a326f-77ca-4ea0-9729-2116be1586a1")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 157.133 137.16 0)
+			(at 223.867 137.16 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4719,7 +4720,7 @@
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 		)
 	)
@@ -5798,17 +5799,17 @@
 	)
 	(global_label "+5V"
 		(shape bidirectional)
-		(at 95.25 135.89 0)
+		(at 44.45 135.89 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "9c4274be-40af-4d8f-bdea-b8d6dee77ad7")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 95.25 135.89 0)
+			(at 36.483 135.89 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5816,6 +5817,7 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
 	)
@@ -6418,17 +6420,17 @@
 	)
 	(global_label "GND"
 		(shape bidirectional)
-		(at 44.45 135.89 180)
+		(at 95.25 135.89 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "c9344659-d9f6-4267-bb46-599068e35a78")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 36.483 135.89 0)
+			(at 103.217 135.89 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6436,7 +6438,7 @@
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 		)
 	)
