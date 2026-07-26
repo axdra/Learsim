@@ -2,3 +2,5 @@ Touch/pyvenv.cfg
 Touch/Scripts
 Touch/Lib
 Touch/Include
+PCBs/learsim pcbs.csv
+.DS_Store
