@@ -3730,6 +3730,16 @@
 	)
 	(wire
 		(pts
+			(xy 60.96 81.28) (xy 60.96 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6855c1b3-9801-4875-9f35-365fd8e15e99")
+	)
+	(wire
+		(pts
 			(xy 111.76 36.83) (xy 127 36.83)
 		)
 		(stroke
@@ -3747,6 +3757,16 @@
 			(type default)
 		)
 		(uuid "84d2664e-29b2-48f6-853e-bd49739b51c2")
+	)
+	(wire
+		(pts
+			(xy 76.2 81.28) (xy 76.2 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c3593e54-79e8-480a-8b83-10401352e7d8")
 	)
 	(wire
 		(pts
@@ -3807,6 +3827,30 @@
 			(type default)
 		)
 		(uuid "f984ccd1-d803-4ffa-a5eb-f49dbbbe2d78")
+	)
+	(global_label "COM2_LED"
+		(shape bidirectional)
+		(at 76.2 92.71 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "006e1f9d-f7de-4e30-835c-47d7d40b87b7")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 84.2 92.71 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
 	)
 	(global_label "GND"
 		(shape bidirectional)
@@ -4139,6 +4183,30 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+			)
+		)
+	)
+	(global_label "GND"
+		(shape bidirectional)
+		(at 76.2 73.66 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "126c48d8-92d9-4c88-acde-5c195cb9fd03")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 84.2 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 			)
 		)
 	)
@@ -5003,6 +5071,30 @@
 			)
 		)
 	)
+	(global_label "COM1_LED"
+		(shape bidirectional)
+		(at 147.32 104.14 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "3ddd2eeb-836d-41a9-a75d-9c2837b832e3")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 155.32 104.14 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
 	(global_label "ENC1_SW"
 		(shape bidirectional)
 		(at 236 140.65 180)
@@ -5217,6 +5309,30 @@
 			)
 		)
 	)
+	(global_label "GND"
+		(shape bidirectional)
+		(at 60.96 73.66 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "475e7e93-7980-43f9-a966-d713b326c0cf")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 68.96 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
 	(global_label "U3_SEG_B"
 		(shape bidirectional)
 		(at 144.78 160.02 180)
@@ -5428,6 +5544,30 @@
 				(font
 					(size 1.27 1.27)
 				)
+			)
+		)
+	)
+	(global_label "COM2_LED"
+		(shape bidirectional)
+		(at 111.76 83.82 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "5b151182-1d4d-40c0-b246-387586843965")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 103.76 83.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 			)
 		)
 	)
@@ -6576,6 +6716,30 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+			)
+		)
+	)
+	(global_label "COM1_LED"
+		(shape bidirectional)
+		(at 60.96 92.71 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "9657adbe-1530-409d-bfcc-f22b1a82d316")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 68.96 92.71 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 			)
 		)
 	)
@@ -8532,6 +8696,86 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 60.96 88.9 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "1036e43a-a786-4a29-8ebc-c1c00a367426")
+		(property "Reference" "R17"
+			(at 64.77 88.9 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "150"
+			(at 64.77 91.1 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+			(at 60.96 88.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 60.96 88.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 60.96 88.9 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a1e6da9d-ca7e-4686-925c-cbd80fd99fcc")
+		)
+		(pin "2"
+			(uuid "5e6896ca-325b-4c4a-aad5-17e06d0d5f64")
+		)
+		(instances
+			(project "learsim pcbs"
+				(path "/27520048-f2d9-41fa-a766-14782a208ac0"
+					(reference "R17")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Driver_LED:MAX7219")
 		(at 190.5 137.16 90)
 		(unit 1)
@@ -9428,6 +9672,86 @@
 			(project "learsim pcbs"
 				(path "/27520048-f2d9-41fa-a766-14782a208ac0"
 					(reference "SW1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 76.2 88.9 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "35fb2a63-9431-4b4c-a6ff-3ab67bbe15c1")
+		(property "Reference" "R18"
+			(at 80.01 88.9 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "470"
+			(at 80.01 91.1 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+			(at 76.2 88.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 76.2 88.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 76.2 88.9 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "145c6d5e-3a1d-42e6-9dee-4dfc6e03e0fb")
+		)
+		(pin "2"
+			(uuid "ef943788-3dc8-4137-a11f-66c7dd034603")
+		)
+		(instances
+			(project "learsim pcbs"
+				(path "/27520048-f2d9-41fa-a766-14782a208ac0"
+					(reference "R18")
 					(unit 1)
 				)
 			)
