@@ -39,9 +39,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 0.8,
-          "height": 1.27,
-          "width": 1.27
+          "drill": 0.0,
+          "height": 0.82,
+          "width": 1.35
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -60,7 +60,7 @@
           "hatch_smoothing_level": 0,
           "hatch_smoothing_value": 0.1,
           "hatch_thickness": 1.0,
-          "min_clearance": 0.5,
+          "min_clearance": 0.0,
           "min_island_area": 10.0,
           "min_thickness": 0.25,
           "pad_connection": 1,
@@ -70,7 +70,16 @@
         }
       },
       "diff_pair_dimensions": [],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        [
+          "lib_footprint_mismatch|129182500|69652500|fb019c6a-fe8f-473d-a1e7-153cf392fb76|00000000-0000-0000-0000-000000000000",
+          "Is edited"
+        ],
+        [
+          "lib_footprint_mismatch|97700000|69600000|d1539e28-a67e-4902-8594-15fdc0caf405|00000000-0000-0000-0000-000000000000",
+          "Is edited"
+        ]
+      ],
       "meta": {
         "version": 2
       },

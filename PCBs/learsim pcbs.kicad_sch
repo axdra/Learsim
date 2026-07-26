@@ -2099,7 +2099,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Rotary:2MS1T1B1M2QES-5"
+		(symbol "Rotary:2MD1T1B1M2QES-5"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -2115,7 +2115,7 @@
 					)
 				)
 			)
-			(property "Value" "2MS1T1B1M2QES-5"
+			(property "Value" "2MD1T1B1M2QES-5"
 				(at 0 -10.16 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2125,7 +2125,7 @@
 					)
 				)
 			)
-			(property "Footprint" "easyeda2kicad:SW-TH_2MS1T1B1M2QES-5"
+			(property "Footprint" "easyeda2kicad:SW-TH_2MD1T1B1M2QES-5"
 				(at 0 -12.7 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2136,7 +2136,7 @@
 					)
 				)
 			)
-			(property "Datasheet" "https://lcsc.com/product-detail/Toggle-Switches_Dailywell-2MS1T1B1M2QES-5_C908280.html"
+			(property "Datasheet" "https://lcsc.com/product-detail/Toggle-Switches_Dailywell-2MD1T1B1M2QES-5_C908282.html"
 				(at 0 -15.24 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2169,7 +2169,7 @@
 					)
 				)
 			)
-			(property "MPN" "2MS1T1B1M2QES-5"
+			(property "MPN" "2MD1T1B1M2QES-5"
 				(at 0 -20.32 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2180,7 +2180,7 @@
 					)
 				)
 			)
-			(property "LCSC Part" "C908280"
+			(property "LCSC Part" "C908282"
 				(at 0 -22.86 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2202,7 +2202,77 @@
 					)
 				)
 			)
-			(symbol "2MS1T1B1M2QES-5_0_1"
+			(symbol "2MD1T1B1M2QES-5_0_1"
+				(circle
+					(center -6.35 -1.27)
+					(radius 0.51)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -6.35 -1.78) (xy -6.35 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -4.06 1.02) (xy -2.03 -1.52)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -3.81 2.03) (xy -3.81 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center -3.81 1.52)
+					(radius 0.51)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.52 0) (xy -5.59 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
 				(circle
 					(center -1.27 -1.27)
 					(radius 0.51)
@@ -2218,53 +2288,6 @@
 					(pts
 						(xy -1.27 -1.78) (xy -1.27 -2.54)
 					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.02 0.25) (xy 3.3 0.25)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.02 1.02) (xy 3.05 -1.52)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 2.03) (xy 1.27 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 1.27 1.52)
-					(radius 0.51)
 					(stroke
 						(width 0)
 						(type default)
@@ -2296,8 +2319,78 @@
 						(type none)
 					)
 				)
+				(polyline
+					(pts
+						(xy 6.1 1.02) (xy 8.13 -1.52)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 6.35 2.03) (xy 6.35 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 6.35 1.52)
+					(radius 0.51)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 8.64 0) (xy 4.57 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 8.89 -1.27)
+					(radius 0.51)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 8.89 -1.78) (xy 8.89 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
 				(pin unspecified line
-					(at -1.27 -5.08 90)
+					(at -6.35 -5.08 90)
 					(length 2.54)
 					(name "1"
 						(effects
@@ -2315,7 +2408,7 @@
 					)
 				)
 				(pin unspecified line
-					(at 1.27 5.08 270)
+					(at -3.81 5.08 270)
 					(length 2.54)
 					(name "2"
 						(effects
@@ -2333,7 +2426,7 @@
 					)
 				)
 				(pin unspecified line
-					(at 3.81 -5.08 90)
+					(at -1.27 -5.08 90)
 					(length 2.54)
 					(name "3"
 						(effects
@@ -2343,6 +2436,60 @@
 						)
 					)
 					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at 3.81 -5.08 90)
+					(length 2.54)
+					(name "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at 6.35 5.08 270)
+					(length 2.54)
+					(name "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin unspecified line
+					(at 8.89 -5.08 90)
+					(length 2.54)
+					(name "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3050,61 +3197,61 @@
 		(at 157.48 36.83)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "05c0f19f-0f10-4cb0-8352-cfbafa3c25cf")
-	)
-	(junction
-		(at 151.13 21.59)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "0fc4b943-4f84-4de7-9a0d-f8ede64bc632")
-	)
-	(junction
-		(at 172.72 21.59)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "22e58e96-83b5-41e2-9091-1e4aa3c17cf2")
-	)
-	(junction
-		(at 151.13 36.83)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "33261466-b646-4f2a-8833-24b75c8e707f")
-	)
-	(junction
-		(at 127 21.59)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "366cb4b0-1049-4269-b243-cd19e765be2b")
+		(uuid "0ed74168-18dc-455a-be31-cf401d16dd8f")
 	)
 	(junction
 		(at 172.72 36.83)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "8ff83e5f-40e3-48d8-a08c-7f461f67be5b")
-	)
-	(junction
-		(at 157.48 21.59)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "aa51c8e1-4661-4a4e-8591-30c83b4e80a4")
-	)
-	(junction
-		(at 142.24 36.83)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "ad690144-c4ce-4696-a24e-bc4dcd39bb49")
+		(uuid "3cabef1a-94ac-4a8d-9f68-2711b2916097")
 	)
 	(junction
 		(at 127 36.83)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "dc37313b-513c-4036-9712-d9be0b343d0c")
+		(uuid "56144aab-e4ef-40a0-a7e3-297c3f0153ce")
 	)
 	(junction
 		(at 142.24 21.59)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "e60f016d-03af-49d0-b2b5-ae2b7e3b5b7c")
+		(uuid "62410416-3558-4932-8e72-e28e1c00355d")
+	)
+	(junction
+		(at 152.4 21.59)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "7a008c0f-2ad6-4bdd-934b-cb6f2e4b2b98")
+	)
+	(junction
+		(at 142.24 36.83)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "84e15115-ffec-4575-bc4e-319c9904901b")
+	)
+	(junction
+		(at 127 21.59)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8c49b1d9-1f33-4e95-8774-976ca8aa1c5c")
+	)
+	(junction
+		(at 157.48 21.59)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b4da49b2-e84c-42e9-84d4-c64f29f0c774")
+	)
+	(junction
+		(at 151.13 36.83)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e095e9dd-2f4a-4509-b0e9-c4eefe8f1fa2")
+	)
+	(junction
+		(at 172.72 21.59)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f04dfdcb-ad76-44fd-b8f8-9dd48315b694")
 	)
 	(no_connect
 		(at 172.72 147.32)
@@ -3132,43 +3279,53 @@
 	)
 	(wire
 		(pts
+			(xy 172.72 36.83) (xy 187.96 36.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "10298eb1-a20e-4ab8-be62-0b03fe9ec50e")
+	)
+	(wire
+		(pts
 			(xy 151.13 36.83) (xy 157.48 36.83)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "02208b49-97d0-4d48-bd09-c720c5324652")
+		(uuid "162848bc-df30-4fa5-9c50-e603cd88afca")
 	)
 	(wire
 		(pts
-			(xy 172.72 21.59) (xy 187.96 21.59)
+			(xy 157.48 21.59) (xy 172.72 21.59)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "0951e3c8-73de-42e7-bbd2-eca48a757098")
+		(uuid "1e07a770-5e93-4307-aa82-1ce2124763e4")
 	)
 	(wire
 		(pts
-			(xy 111.76 36.83) (xy 127 36.83)
+			(xy 111.76 21.59) (xy 127 21.59)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "18360111-8347-4cab-b621-03fd9c5cf92a")
+		(uuid "1e4709cf-18be-49f8-bdf7-357505f87b98")
 	)
 	(wire
 		(pts
-			(xy 127 21.59) (xy 142.24 21.59)
+			(xy 152.4 15.24) (xy 151.13 15.24)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "697b4b92-61ad-4a9e-952c-7f142adc87ed")
+		(uuid "30f9f0b1-f847-4f7e-9d7a-19598f1a0477")
 	)
 	(wire
 		(pts
@@ -3178,7 +3335,27 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "69a2834b-1cc0-4fb3-9ceb-0c87833236bb")
+		(uuid "31e27ec7-a862-4862-a01d-6aae3d7504be")
+	)
+	(wire
+		(pts
+			(xy 142.24 21.59) (xy 152.4 21.59)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "45e6fe17-57d8-4a3a-9a5b-f9eb96ddd3e4")
+	)
+	(wire
+		(pts
+			(xy 111.76 36.83) (xy 127 36.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6bd051db-d8e8-45a2-a203-56e9489ab38f")
 	)
 	(wire
 		(pts
@@ -3192,23 +3369,43 @@
 	)
 	(wire
 		(pts
-			(xy 111.76 21.59) (xy 127 21.59)
+			(xy 157.48 36.83) (xy 172.72 36.83)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "772981d9-3184-4221-8c60-f4cb5b6ffb2f")
+		(uuid "84d2664e-29b2-48f6-853e-bd49739b51c2")
 	)
 	(wire
 		(pts
-			(xy 142.24 21.59) (xy 151.13 21.59)
+			(xy 152.4 21.59) (xy 152.4 15.24)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "986dbc4c-7f62-468c-98a0-e378ff3d9b77")
+		(uuid "c650584c-254d-441a-9dde-5607d362e653")
+	)
+	(wire
+		(pts
+			(xy 127 21.59) (xy 142.24 21.59)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d4076c28-54e6-4bdb-9f9c-a7c445e7dcca")
+	)
+	(wire
+		(pts
+			(xy 172.72 21.59) (xy 187.96 21.59)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d58df221-5255-473c-8eaa-9116eff793af")
 	)
 	(wire
 		(pts
@@ -3218,57 +3415,27 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "99cd89eb-af93-4570-9405-c513a41c2719")
+		(uuid "e19b6cd2-cd32-434e-9193-b108981bcb84")
 	)
 	(wire
 		(pts
-			(xy 157.48 36.83) (xy 172.72 36.83)
+			(xy 151.13 36.83) (xy 151.13 40.64)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "c2833a8c-1e31-4854-a8c9-b5eb42de29e1")
+		(uuid "f14a4f04-f3a7-4fe2-8c0b-ee3dcad0efa8")
 	)
 	(wire
 		(pts
-			(xy 151.13 21.59) (xy 157.48 21.59)
+			(xy 152.4 21.59) (xy 157.48 21.59)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "ceae3b37-34bf-4b29-8ba4-5886cbf52c86")
-	)
-	(wire
-		(pts
-			(xy 172.72 36.83) (xy 187.96 36.83)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e148ba74-dd9e-47e6-aec1-e0122e25c774")
-	)
-	(wire
-		(pts
-			(xy 151.13 15.24) (xy 151.13 21.59)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "edc225d0-ae76-4a73-a0e0-7ea7d4732de6")
-	)
-	(wire
-		(pts
-			(xy 157.48 21.59) (xy 172.72 21.59)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f613b6dd-8e06-4342-98e7-a34f527c8fee")
+		(uuid "f984ccd1-d803-4ffa-a5eb-f49dbbbe2d78")
 	)
 	(global_label "GND"
 		(shape bidirectional)
@@ -3458,29 +3625,6 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
-			)
-		)
-	)
-	(global_label "SW3_B"
-		(shape bidirectional)
-		(at 250 196.19 90)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "0ce80613-b2f6-40df-9c7d-ae002cabc980")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 250 196.19 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
 			)
 		)
 	)
@@ -3962,7 +4106,7 @@
 	)
 	(global_label "GND"
 		(shape bidirectional)
-		(at 26.67 96.52 90)
+		(at 35.56 72.39 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3972,7 +4116,7 @@
 		)
 		(uuid "2ae31795-816b-4fc7-808a-83d65b9af968")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 26.67 96.52 0)
+			(at 35.56 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5128,7 +5272,7 @@
 	)
 	(global_label "SW3_A"
 		(shape bidirectional)
-		(at 24.13 106.68 270)
+		(at 33.02 82.55 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5138,7 +5282,7 @@
 		)
 		(uuid "6958b2c1-f9b4-47c2-95dc-e23988280888")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 24.13 116.7031 90)
+			(at 33.02 92.5731 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5243,6 +5387,30 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+			)
+		)
+	)
+	(global_label "SW3_A"
+		(shape bidirectional)
+		(at 236.19 162.56 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "719863d5-2e5b-4e43-8c85-6e9ffe7be0ab")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 226.1669 162.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 			)
 		)
 	)
@@ -5844,7 +6012,7 @@
 	)
 	(global_label "SW3_B"
 		(shape bidirectional)
-		(at 29.21 106.68 270)
+		(at 38.1 82.55 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5852,9 +6020,9 @@
 			)
 			(justify right)
 		)
-		(uuid "9776ae16-c7f8-4722-9250-5278f78ad9b1")
+		(uuid "956eac7e-8a14-41c7-b0a4-4cd49940dae5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 29.21 116.8845 90)
+			(at 38.1 92.7545 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6247,6 +6415,30 @@
 			)
 		)
 	)
+	(global_label "SW3_B"
+		(shape bidirectional)
+		(at 250.19 162.56 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "ac5b16c9-0671-4bb2-b354-a1d3ed4d944a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 239.9855 162.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
 	(global_label "U3_SEG_D"
 		(shape bidirectional)
 		(at 144.78 165.1 180)
@@ -6417,17 +6609,17 @@
 	)
 	(global_label "+3V3"
 		(shape bidirectional)
-		(at 236 203.81 90)
+		(at 236.19 170.18 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
-		(uuid "b8c34a91-af67-4e92-93b6-47ea935fa00e")
+		(uuid "b8c34a91-af67-4e92-93b6-47ea935fa00f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 236 203.81 0)
+			(at 227.0135 170.18 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6435,6 +6627,7 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
 	)
@@ -6461,29 +6654,6 @@
 			)
 		)
 	)
-	(global_label "SW3_A"
-		(shape bidirectional)
-		(at 236 196.19 90)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "c0957d4e-25df-4bd9-8ed1-4582f45b3055")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 236 196.19 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-	)
 	(global_label "+5V"
 		(shape bidirectional)
 		(at 290 69.53 180)
@@ -6497,6 +6667,30 @@
 		(uuid "c1c60493-8a3f-4445-b26a-86fc9e5e3ba3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 282.033 69.53 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
+	(global_label "GND"
+		(shape bidirectional)
+		(at 264.19 170.18 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "c1d0dc3d-ba02-4d03-aa6a-227e2fe234c6")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 256.223 170.18 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6534,17 +6728,17 @@
 	)
 	(global_label "+3V3"
 		(shape bidirectional)
-		(at 250 203.81 90)
+		(at 250.19 170.18 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
-		(uuid "c2aa0c32-9e26-4c16-8ca8-63b8516b782f")
+		(uuid "c2aa0c32-9e26-4c16-8ca8-63b8516b7830")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 250 203.81 0)
+			(at 241.0135 170.18 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6552,6 +6746,7 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
 	)
@@ -7022,6 +7217,30 @@
 		(uuid "e0f1fd03-6d66-47bb-a17c-aa42bf7e0a1c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 274.0502 41.59 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
+	(global_label "+5V"
+		(shape bidirectional)
+		(at 264.19 162.56 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "e10332f0-3a46-427d-acdf-00194cbdee49")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 256.223 162.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8192,124 +8411,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Rotary:2MS1T1B1M2QES-5")
-		(at 25.4 101.6 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "2bbd6cc6-01ba-4959-ac80-41f070ba1ecc")
-		(property "Reference" "SW3"
-			(at 30.48 100.3299 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "2MS1T1B1M2QES-5"
-			(at 30.48 102.8699 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Rotary:SW-TH_2MS1T1B1M2QES-5"
-			(at 25.4 114.3 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://lcsc.com/product-detail/Toggle-Switches_Dailywell-2MS1T1B1M2QES-5_C908280.html"
-			(at 25.4 116.84 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 25.4 101.6 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Manufacturer" "Dailywell(德利威)"
-			(at 25.4 119.38 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MPN" "2MS1T1B1M2QES-5"
-			(at 25.4 121.92 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part" "C908280"
-			(at 25.4 124.46 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "3"
-			(uuid "e1ba285f-196f-4c63-b7a3-0d46f7cd5ecc")
-		)
-		(pin "2"
-			(uuid "42925111-d78c-4c32-9d3e-a03b5e206eb0")
-		)
-		(pin "1"
-			(uuid "8d94bf6a-3f61-4cc3-a588-a37faf27b9f9")
-		)
-		(instances
-			(project "learsim pcbs"
-				(path "/27520048-f2d9-41fa-a766-14782a208ac0"
-					(reference "SW3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "LED:SK6812MINI-E")
 		(at 187.96 29.21 0)
 		(unit 1)
@@ -8920,7 +9021,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 151.13 36.83 0)
+		(at 151.13 40.64 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8931,7 +9032,7 @@
 		(fields_autoplaced yes)
 		(uuid "3e6a257f-fa72-48b5-ac23-8975e22ec60d")
 		(property "Reference" "#PWR010"
-			(at 151.13 43.18 0)
+			(at 151.13 46.99 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8942,7 +9043,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 151.13 41.91 0)
+			(at 151.13 45.72 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8952,7 +9053,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 151.13 36.83 0)
+			(at 151.13 40.64 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8963,7 +9064,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 151.13 36.83 0)
+			(at 151.13 40.64 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8974,7 +9075,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 151.13 36.83 0)
+			(at 151.13 40.64 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9156,7 +9257,7 @@
 	)
 	(symbol
 		(lib_id "LED:SK6812MINI-E")
-		(at 127 29.21 0)
+		(at 142.24 29.21 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9167,7 +9268,7 @@
 		(fields_autoplaced yes)
 		(uuid "437dfc99-bc00-4cee-970f-d1301d3754aa")
 		(property "Reference" "D2"
-			(at 140.97 22.7898 0)
+			(at 156.21 22.7898 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9177,7 +9278,7 @@
 			)
 		)
 		(property "Value" "COM2"
-			(at 140.97 25.3298 0)
+			(at 156.21 25.3298 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9187,7 +9288,7 @@
 			)
 		)
 		(property "Footprint" "LED_SMD:LED_SK6812MINI-E_3.2x2.8mm_P1.5mm_ReverseMount"
-			(at 128.27 36.83 0)
+			(at 143.51 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9199,7 +9300,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.lcsc.com/datasheet/C5149201.pdf"
-			(at 129.54 38.735 0)
+			(at 144.78 38.735 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9211,7 +9312,7 @@
 			)
 		)
 		(property "Description" "RGB LED with integrated controller"
-			(at 127 29.21 0)
+			(at 142.24 29.21 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9518,7 +9619,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 250 200 0)
+		(at 250.19 166.37 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9526,9 +9627,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "4d974e53-a104-43ae-bd4b-3a4e152de1cf")
+		(uuid "4d974e53-a104-43ae-bd4b-3a4e152de1d0")
 		(property "Reference" "R16"
-			(at 253.81 198.73 0)
+			(at 254 165.1 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9539,7 +9640,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 253.81 201.27 0)
+			(at 254 167.64 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9550,7 +9651,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
-			(at 250 200 0)
+			(at 250.19 166.37 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9561,7 +9662,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 250 200 0)
+			(at 250.19 166.37 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9572,7 +9673,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 250 200 0)
+			(at 250.19 166.37 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9582,10 +9683,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "9d94bb0d-8e74-4907-a505-cd8657b640fe")
+			(uuid "9d94bb0d-8e74-4907-a505-cd8657b640ff")
 		)
 		(pin "2"
-			(uuid "2c738b51-f3f7-4c38-b6ed-4312bd3b5a1d")
+			(uuid "2c738b51-f3f7-4c38-b6ed-4312bd3b5a1e")
 		)
 		(instances
 			(project "learsim pcbs"
@@ -9838,7 +9939,7 @@
 	)
 	(symbol
 		(lib_id "LED:SK6812MINI-E")
-		(at 142.24 29.21 0)
+		(at 157.48 29.21 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9849,7 +9950,7 @@
 		(fields_autoplaced yes)
 		(uuid "648c90b0-3d8c-4893-9bd7-61918bfcbd69")
 		(property "Reference" "D3"
-			(at 156.21 22.7898 0)
+			(at 171.45 22.7898 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9859,7 +9960,7 @@
 			)
 		)
 		(property "Value" "NAV1"
-			(at 156.21 25.3298 0)
+			(at 171.45 25.3298 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9869,7 +9970,7 @@
 			)
 		)
 		(property "Footprint" "LED_SMD:LED_SK6812MINI-E_3.2x2.8mm_P1.5mm_ReverseMount"
-			(at 143.51 36.83 0)
+			(at 158.75 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9881,7 +9982,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.lcsc.com/datasheet/C5149201.pdf"
-			(at 144.78 38.735 0)
+			(at 160.02 38.735 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9893,7 +9994,7 @@
 			)
 		)
 		(property "Description" "RGB LED with integrated controller"
-			(at 142.24 29.21 0)
+			(at 157.48 29.21 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10244,7 +10345,7 @@
 	)
 	(symbol
 		(lib_id "LED:SK6812MINI-E")
-		(at 157.48 29.21 0)
+		(at 172.72 29.21 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -10255,7 +10356,7 @@
 		(fields_autoplaced yes)
 		(uuid "71372cb7-d22c-4749-8939-5fb813e8aebc")
 		(property "Reference" "D4"
-			(at 171.45 22.7898 0)
+			(at 186.69 22.7898 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -10265,7 +10366,7 @@
 			)
 		)
 		(property "Value" "NAV2"
-			(at 171.45 25.3298 0)
+			(at 186.69 25.3298 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -10275,7 +10376,7 @@
 			)
 		)
 		(property "Footprint" "LED_SMD:LED_SK6812MINI-E_3.2x2.8mm_P1.5mm_ReverseMount"
-			(at 158.75 36.83 0)
+			(at 173.99 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10287,7 +10388,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.lcsc.com/datasheet/C5149201.pdf"
-			(at 160.02 38.735 0)
+			(at 175.26 38.735 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10299,7 +10400,7 @@
 			)
 		)
 		(property "Description" "RGB LED with integrated controller"
-			(at 157.48 29.21 0)
+			(at 172.72 29.21 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11223,7 +11324,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 236 200 0)
+		(at 236.19 166.37 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11231,9 +11332,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "a71694ec-3685-43bc-a56b-00d7fd95d45e")
+		(uuid "a71694ec-3685-43bc-a56b-00d7fd95d45f")
 		(property "Reference" "R15"
-			(at 239.81 198.73 0)
+			(at 240 165.1 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11244,7 +11345,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 239.81 201.27 0)
+			(at 240 167.64 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11255,7 +11356,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
-			(at 236 200 0)
+			(at 236.19 166.37 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11266,7 +11367,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 236 200 0)
+			(at 236.19 166.37 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11277,7 +11378,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 236 200 0)
+			(at 236.19 166.37 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11287,10 +11388,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "e594eea7-9f20-4d0d-b364-1a8572336a91")
+			(uuid "e594eea7-9f20-4d0d-b364-1a8572336a92")
 		)
 		(pin "2"
-			(uuid "baa34c98-28e0-4763-bca3-c7e4a3b6a616")
+			(uuid "baa34c98-28e0-4763-bca3-c7e4a3b6a617")
 		)
 		(instances
 			(project "learsim pcbs"
@@ -11382,6 +11483,94 @@
 		)
 	)
 	(symbol
+		(lib_id "LED:SK6812MINI-E")
+		(at 111.76 29.21 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b813b03f-2228-4646-8be3-9856f52470c1")
+		(property "Reference" "D5"
+			(at 125.73 22.7898 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Switch1"
+			(at 125.73 25.3298 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_SK6812MINI-E_3.2x2.8mm_P1.5mm_ReverseMount"
+			(at 113.03 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C5149201.pdf"
+			(at 114.3 38.735 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(property "Description" "RGB LED with integrated controller"
+			(at 111.76 29.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "4"
+			(uuid "4d02fe81-8cd2-47e7-a292-2fcaec6aaa6a")
+		)
+		(pin "3"
+			(uuid "797ce788-73bd-43a8-b51c-39daf589654f")
+		)
+		(pin "2"
+			(uuid "2fa6dd71-79ba-4010-898a-e61bbc42650d")
+		)
+		(pin "1"
+			(uuid "8ec56299-d937-4076-a7d6-ad9d4481b807")
+		)
+		(instances
+			(project "learsim pcbs"
+				(path "/27520048-f2d9-41fa-a766-14782a208ac0"
+					(reference "D5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 272 73.34 0)
 		(unit 1)
@@ -11456,6 +11645,133 @@
 			(project "learsim pcbs"
 				(path "/27520048-f2d9-41fa-a766-14782a208ac0"
 					(reference "C1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Rotary:2MD1T1B1M2QES-5")
+		(at 39.37 77.47 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "bada3ede-2d9c-4acc-b2e7-88c7142756ab")
+		(property "Reference" "SW4"
+			(at 31.75 76.1999 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "2MD1T1B1M2QES-5"
+			(at 31.75 78.7399 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Rotary:SW-TH_2MD1T1B1M2QES-5"
+			(at 39.37 90.17 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://lcsc.com/product-detail/Toggle-Switches_Dailywell-2MD1T1B1M2QES-5_C908282.html"
+			(at 39.37 92.71 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 39.37 77.47 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Dailywell(德利威)"
+			(at 39.37 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "2MD1T1B1M2QES-5"
+			(at 39.37 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part" "C908282"
+			(at 39.37 100.33 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "49e64aef-1213-47f8-bbc1-592f888c5cfa")
+		)
+		(pin "5"
+			(uuid "437e4f11-9978-473b-a454-a8d03a8cfb3c")
+		)
+		(pin "4"
+			(uuid "29da198b-a3d1-4a32-a797-46026efff76f")
+		)
+		(pin "1"
+			(uuid "01e8676e-085c-457d-9a22-15bb4f4465aa")
+		)
+		(pin "3"
+			(uuid "7e6ae609-58da-47ee-9b97-e1afb0aea3f9")
+		)
+		(pin "6"
+			(uuid "8184643e-88fb-44d9-8d4b-e89785f765c8")
+		)
+		(instances
+			(project "learsim pcbs"
+				(path "/27520048-f2d9-41fa-a766-14782a208ac0"
+					(reference "SW4")
 					(unit 1)
 				)
 			)
@@ -11623,7 +11939,7 @@
 	)
 	(symbol
 		(lib_id "LED:SK6812MINI-E")
-		(at 111.76 29.21 0)
+		(at 127 29.21 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11634,7 +11950,7 @@
 		(fields_autoplaced yes)
 		(uuid "c88b98bd-75c1-461f-84d8-1393c07b2a51")
 		(property "Reference" "D1"
-			(at 125.73 22.7898 0)
+			(at 140.97 22.7898 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11644,7 +11960,7 @@
 			)
 		)
 		(property "Value" "COM1"
-			(at 125.73 25.3298 0)
+			(at 140.97 25.3298 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11654,7 +11970,7 @@
 			)
 		)
 		(property "Footprint" "LED_SMD:LED_SK6812MINI-E_3.2x2.8mm_P1.5mm_ReverseMount"
-			(at 113.03 36.83 0)
+			(at 128.27 36.83 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11666,7 +11982,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.lcsc.com/datasheet/C5149201.pdf"
-			(at 114.3 38.735 0)
+			(at 129.54 38.735 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11678,7 +11994,7 @@
 			)
 		)
 		(property "Description" "RGB LED with integrated controller"
-			(at 111.76 29.21 0)
+			(at 127 29.21 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11710,8 +12026,8 @@
 		)
 	)
 	(symbol
-		(lib_id "LED:SK6812MINI-E")
-		(at 172.72 29.21 0)
+		(lib_id "Device:C")
+		(at 264.19 166.37 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11719,54 +12035,31 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "c996195b-ca79-4d2b-97c0-36d2f3d6bdf9")
-		(property "Reference" "D5"
-			(at 186.69 22.7898 0)
+		(uuid "c8ec118e-33f2-40b1-9676-bd0e996df01f")
+		(property "Reference" "C6"
+			(at 268 165.1 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
-		(property "Value" "Switch1"
-			(at 186.69 25.3298 0)
+		(property "Value" "220uF"
+			(at 268 167.64 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
-		(property "Footprint" "LED_SMD:LED_SK6812MINI-E_3.2x2.8mm_P1.5mm_ReverseMount"
-			(at 173.99 36.83 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/C5149201.pdf"
-			(at 175.26 38.735 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(property "Description" "RGB LED with integrated controller"
-			(at 172.72 29.21 0)
+		(property "Footprint" "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm"
+			(at 264.19 166.37 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11776,22 +12069,37 @@
 				)
 			)
 		)
-		(pin "4"
-			(uuid "bb1ba2ca-4237-48ef-a71c-47e7e8a09094")
+		(property "Datasheet" "~"
+			(at 264.19 166.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
-		(pin "3"
-			(uuid "0e350053-0e5a-41be-b8cd-18b2e53f4500")
-		)
-		(pin "2"
-			(uuid "ad616114-961f-40b0-9170-6c1642b98773")
+		(property "Description" ""
+			(at 264.19 166.37 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(pin "1"
-			(uuid "5a6d9dfa-44af-486f-87ec-207dddd8c3d1")
+			(uuid "3cf17ddb-ed2c-4be2-9165-f60ba35ee42e")
+		)
+		(pin "2"
+			(uuid "b6fcd385-4b52-4bed-ba8e-f129f4041120")
 		)
 		(instances
 			(project "learsim pcbs"
 				(path "/27520048-f2d9-41fa-a766-14782a208ac0"
-					(reference "D5")
+					(reference "C6")
 					(unit 1)
 				)
 			)
@@ -13069,215 +13377,6 @@
 				)
 			)
 		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 236.0 200.0 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "a71694ec-3685-43bc-a56b-00d7fd95d45e")
-		(property "Reference" "R15"
-			(at 239.81 198.73 0)
-			(effects (font (size 1.27 1.27)) (justify left))
-		)
-		(property "Value" "10k"
-			(at 239.81 201.27 0)
-			(effects (font (size 1.27 1.27)) (justify left))
-		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
-			(at 236.0 200.0 0)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Datasheet" "~"
-			(at 236.0 200.0 0)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(pin "1"
-			(uuid "e594eea7-9f20-4d0d-b364-1a8572336a91")
-		)
-		(pin "2"
-			(uuid "baa34c98-28e0-4763-bca3-c7e4a3b6a616")
-		)
-		(instances
-			(project "learsim pcbs"
-				(path "/27520048-f2d9-41fa-a766-14782a208ac0"
-					(reference "R15")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 250.0 200.0 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "4d974e53-a104-43ae-bd4b-3a4e152de1cf")
-		(property "Reference" "R16"
-			(at 253.81 198.73 0)
-			(effects (font (size 1.27 1.27)) (justify left))
-		)
-		(property "Value" "10k"
-			(at 253.81 201.27 0)
-			(effects (font (size 1.27 1.27)) (justify left))
-		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
-			(at 250.0 200.0 0)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Datasheet" "~"
-			(at 250.0 200.0 0)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(pin "1"
-			(uuid "9d94bb0d-8e74-4907-a505-cd8657b640fe")
-		)
-		(pin "2"
-			(uuid "2c738b51-f3f7-4c38-b6ed-4312bd3b5a1d")
-		)
-		(instances
-			(project "learsim pcbs"
-				(path "/27520048-f2d9-41fa-a766-14782a208ac0"
-					(reference "R16")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(global_label "GND"
-		(shape bidirectional)
-		(at 26.67 96.52 90)
-		(fields_autoplaced yes)
-		(effects (font (size 1.27 1.27)) (justify left))
-		(uuid "2ae31795-816b-4fc7-808a-83d65b9af968")
-	)
-	(global_label "+3V3"
-		(shape bidirectional)
-		(at 236.0 203.81 270)
-		(fields_autoplaced yes)
-		(effects (font (size 1.27 1.27)) (justify left))
-		(uuid "b8c34a91-af67-4e92-93b6-47ea935fa00e")
-	)
-	(global_label "+3V3"
-		(shape bidirectional)
-		(at 250.0 203.81 270)
-		(fields_autoplaced yes)
-		(effects (font (size 1.27 1.27)) (justify left))
-		(uuid "c2aa0c32-9e26-4c16-8ca8-63b8516b782f")
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 264.0 200.0 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "c8ec118e-33f2-40b1-9676-bd0e996df01f")
-		(property "Reference" "C6"
-			(at 267.81 198.73 0)
-			(effects (font (size 1.27 1.27)) (justify left))
-		)
-		(property "Value" "220uF"
-			(at 267.81 201.27 0)
-			(effects (font (size 1.27 1.27)) (justify left))
-		)
-		(property "Footprint" "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm"
-			(at 264.0 200.0 0)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Datasheet" "~"
-			(at 264.0 200.0 0)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(pin "1"
-			(uuid "3cf17ddb-ed2c-4be2-9165-f60ba35ee42e")
-		)
-		(pin "2"
-			(uuid "b6fcd385-4b52-4bed-ba8e-f129f4041120")
-		)
-		(instances
-			(project "learsim pcbs"
-				(path "/27520048-f2d9-41fa-a766-14782a208ac0"
-					(reference "C6")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(global_label "SW3_A"
-		(shape bidirectional)
-		(at 24.13 106.68 270)
-		(fields_autoplaced yes)
-		(effects (font (size 1.27 1.27)) (justify left))
-		(uuid "e294f4ec-a9bf-45a4-a041-25fdfc6b3278")
-	)
-	(global_label "SW3_A"
-		(shape bidirectional)
-		(at 236.0 196.19 90)
-		(fields_autoplaced yes)
-		(effects (font (size 1.27 1.27)) (justify left))
-		(uuid "719863d5-2e5b-4e43-8c85-6e9ffe7be0ab")
-	)
-	(global_label "SW3_A"
-		(shape bidirectional)
-		(at 111.76 105.41 180)
-		(fields_autoplaced yes)
-		(effects (font (size 1.27 1.27)) (justify left))
-		(uuid "44778ddf-2fd2-4eec-9fc7-183fa17db564")
-	)
-	(global_label "SW3_B"
-		(shape bidirectional)
-		(at 29.21 106.68 270)
-		(fields_autoplaced yes)
-		(effects (font (size 1.27 1.27)) (justify left))
-		(uuid "956eac7e-8a14-41c7-b0a4-4cd49940dae5")
-	)
-	(global_label "SW3_B"
-		(shape bidirectional)
-		(at 250.0 196.19 90)
-		(fields_autoplaced yes)
-		(effects (font (size 1.27 1.27)) (justify left))
-		(uuid "ac5b16c9-0671-4bb2-b354-a1d3ed4d944a")
-	)
-	(global_label "SW3_B"
-		(shape bidirectional)
-		(at 111.76 123.19 270)
-		(fields_autoplaced yes)
-		(effects (font (size 1.27 1.27)) (justify left))
-		(uuid "603281a6-5419-48aa-bf95-933a3bf2bf27")
-	)
-	(global_label "+5V"
-		(shape bidirectional)
-		(at 264.0 196.19 90)
-		(fields_autoplaced yes)
-		(effects (font (size 1.27 1.27)) (justify left))
-		(uuid "e10332f0-3a46-427d-acdf-00194cbdee49")
-	)
-	(global_label "GND"
-		(shape bidirectional)
-		(at 264.0 203.81 270)
-		(fields_autoplaced yes)
-		(effects (font (size 1.27 1.27)) (justify left))
-		(uuid "c1d0dc3d-ba02-4d03-aa6a-227e2fe234c6")
 	)
 	(sheet_instances
 		(path "/"
