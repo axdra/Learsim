@@ -1,0 +1,52 @@
+name: Build learsim-glass for Raspberry Pi (arm64)
+
+# Builds the glass display binary for a 64-bit Raspberry Pi so you never have to
+# compile Tauri on the Pi itself. Run it from the Actions tab (Run workflow),
+# then download the "learsim-glass-pi-arm64" artifact and copy it to the Pi.
+#
+# Compatibility: the compile runs inside a Debian Bookworm arm64 container so
+# the binary links against the same glibc (2.36) and webkit2gtk (4.1) as
+# Raspberry Pi OS Bookworm. Building on a stock Ubuntu runner would produce a
+# binary that fails on the Pi with "GLIBC_2.3x not found".
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    # arm64 hosted runner → the Debian Bookworm container runs natively (no
+    # emulation). Free for public repos; private repos need a plan that includes
+    # Linux arm64 runners. See the QEMU fallback note in the README if needed.
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@v4
+
+      # Compile inside Debian Bookworm (matches the Pi's glibc + webkit2gtk 4.1).
+      # checkout/upload run on the host; only the build runs in the container,
+      # which avoids the host-node-in-old-container glibc problem.
+      - name: Build in Debian Bookworm container
+        run: |
+          docker run --rm -v "$PWD":/work -w /work/learsim-glass \
+            -e CARGO_TERM_COLOR=always debian:bookworm bash -euo pipefail -c '
+              export DEBIAN_FRONTEND=noninteractive
+              apt-get update
+              apt-get install -y --no-install-recommends \
+                ca-certificates curl git file xz-utils build-essential pkg-config \
+                libwebkit2gtk-4.1-dev libgtk-3-dev librsvg2-dev libssl-dev \
+                libayatana-appindicator3-dev
+              curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+              apt-get install -y nodejs
+              curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal
+              . "$HOME/.cargo/env"
+              npm install
+              npm run tauri build
+            '
+
+      - name: Upload binary + frontend
+        uses: actions/upload-artifact@v4
+        with:
+          name: learsim-glass-pi-arm64
+          path: |
+            learsim-glass/src-tauri/target/release/learsim-glass
+            learsim-glass/dist/**
+          if-no-files-found: error
