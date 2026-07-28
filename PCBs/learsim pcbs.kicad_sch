@@ -6985,7 +6985,7 @@
 	)
 	(global_label "SW3_A"
 		(shape bidirectional)
-		(at 111.76 106.68 180)
+		(at 111.76 127 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6995,7 +6995,7 @@
 		)
 		(uuid "a415f536-3141-4b47-b442-992feb3378cf")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 98.8944 106.68 0)
+			(at 98.8944 127 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7583,7 +7583,7 @@
 	)
 	(global_label "SW3_B"
 		(shape bidirectional)
-		(at 111.76 109.22 180)
+		(at 111.76 129.54 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -7593,7 +7593,7 @@
 		)
 		(uuid "c99d68c7-a7be-4c79-b2ab-08e3efc1e39f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 98.8944 109.22 0)
+			(at 98.8944 129.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
