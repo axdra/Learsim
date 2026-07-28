@@ -213,6 +213,39 @@ sudo apt install xserver-xorg xinit openbox
 startx
 ```
 
+### Building on a Raspberry Pi (`rustc` SIGSEGV)
+
+`rustc` crashing with `SIGSEGV` while compiling trivial crates (`unicode-ident`,
+`proc-macro2`, `serde`) is an environment problem, not a code one. In order:
+
+1. **16 KB memory pages (most common cause).** 64-bit Raspberry Pi OS may run a
+   kernel with 16 KB pages, but the prebuilt `rustc` assumes 4 KB pages and
+   segfaults deep in `librustc_driver`. Check with `getconf PAGESIZE` — if it
+   prints `16384`, force the 4 KB-page kernel by adding to
+   `/boot/firmware/config.txt` (or `/boot/config.txt` on older OSes):
+   ```
+   kernel=kernel8.img
+   ```
+   then reboot and re-check (`getconf PAGESIZE` should print `4096`).
+2. **Undervoltage / heat.** `vcgencmd get_throttled` — anything but `0x0` means
+   the PSU or cooling is inadequate, which causes random SIGSEGVs. Use a 5V/3A
+   supply and a heatsink.
+3. **Low RAM (Pi 3 = 1 GB).** Add swap (default is ~100 MB) and compile
+   single-threaded:
+   ```bash
+   sudo dphys-swapfile swapoff
+   sudo sed -i 's/^CONF_SWAPSIZE=.*/CONF_SWAPSIZE=2048/' /etc/dphys-swapfile
+   sudo dphys-swapfile setup && sudo dphys-swapfile swapon
+   CARGO_BUILD_JOBS=1 RUST_MIN_STACK=16777216 npm run tauri build
+   ```
+4. Still crashing on trivial crates → the toolchain is likely corrupted (often
+   from a prior OOM-killed build):
+   `rustup toolchain uninstall stable && rustup toolchain install stable`.
+
+**Easiest of all:** build on a Pi 4/5 or cross-compile on a PC, then copy the
+binary + `dist/` to the Pi 3 and run it — the Pi 3 struggles to *compile* Tauri
+even though it runs the display fine.
+
 ### Raspberry Pi notes
 
 - **Two screens need two outputs.** A **Pi 4 (dual micro-HDMI) or Pi 5** can
