@@ -246,6 +246,35 @@ startx
 binary + `dist/` to the Pi 3 and run it — the Pi 3 struggles to *compile* Tauri
 even though it runs the display fine.
 
+### Build in GitHub Actions (recommended for the Pi)
+
+`.github/workflows/build-pi.yml` compiles the display for a 64-bit Pi with zero
+load on the Pi itself. Run it from the repo's **Actions → Build learsim-glass
+for Raspberry Pi → Run workflow**, then download the `learsim-glass-pi-arm64`
+artifact.
+
+It compiles inside a **Debian Bookworm arm64** container so the binary matches
+Raspberry Pi OS Bookworm's glibc (2.36) and webkit2gtk (4.1) — a stock Ubuntu
+runner would produce a binary that fails on the Pi with `GLIBC_2.3x not found`.
+
+On the Pi, install the runtime libraries once, then run the artifact:
+
+```bash
+sudo apt install -y libwebkit2gtk-4.1-0 libgtk-3-0 librsvg2-2 libayatana-appindicator3-1
+chmod +x learsim-glass
+cage -- ./learsim-glass          # kiosk mode (see below)
+```
+
+The frontend is embedded in the binary at build time, so the single
+`learsim-glass` executable is all you need to run; the `dist/` folder in the
+artifact is just for reference.
+
+> **Private repo without arm64 runners?** The hosted `ubuntu-24.04-arm` runner is
+> free for public repos; private repos need a plan that includes Linux arm64
+> runners. If it's unavailable, change `runs-on:` to `ubuntu-latest` and add a
+> QEMU step (`docker/setup-qemu-action`) with `docker run --platform linux/arm64
+> …` — same container, just emulated (slower).
+
 ### Raspberry Pi notes
 
 - **Two screens need two outputs.** A **Pi 4 (dual micro-HDMI) or Pi 5** can
