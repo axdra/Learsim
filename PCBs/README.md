@@ -18,7 +18,8 @@ SK6812 RGB backlights, two indicator LEDs and an SPDT toggle.
    GPIO21 ── LED DATA▶ D5 ▶ D1 ▶ D2 ▶ D3 ▶ D4 ▶ D6      (WS2812-style chain)
    GPIO15/16/5  ── Encoder SW1 (MHz)  A / B / push
    GPIO18/19/20 ── Encoder SW2 (KHz)  A / B / push
-   GPIO2/0/1/23/22/14 ── COM1 COM2 NAV1 NAV2 ADF1 Switch1 buttons
+   GPIO2/0/1/14 ── COM1 COM2 NAV1 Switch1 buttons
+   EXIO2 / EXIO3 (TCA9554) ── NAV2 / ADF1 buttons
    GPIO3 / GPIO17 ── COM1 / COM2 indicator LEDs (D7 / D8)
    EXIO6 / EXIO7 (TCA9554) ── SW3 toggle throws A / B
 
@@ -40,8 +41,8 @@ SK6812 RGB backlights, two indicator LEDs and an SPDT toggle.
 | COM1 button         | GPIO2          | BTN_COM1  |
 | COM2 button         | GPIO0          | BTN_COM2  |
 | NAV1 button         | GPIO1          | BTN_NAV1  |
-| NAV2 button         | GPIO23         | BTN_NAV2  |
-| ADF1 button         | GPIO22         | BTN_ADF1  |
+| NAV2 button         | EXIO2 (TCA9554)| BTN_NAV2  |
+| ADF1 button         | EXIO3 (TCA9554)| BTN_ADF1  |
 | Switch1 button      | GPIO14         | BTN_Switch1 |
 | COM1 indicator LED  | GPIO3          | COM1_LED  |
 | COM2 indicator LED  | GPIO17 (RX)    | COM2_LED  |
@@ -50,9 +51,12 @@ SK6812 RGB backlights, two indicator LEDs and an SPDT toggle.
 | Power in            | USB-C (Vbus)   | +5V       |
 | Logic rail          | 3V3            | +3V3      |
 
-Spare pins for expansion: **GPIO8, GPIO9, EXIO1–EXIO5**. Note GPIO8/GPIO9 are
-ESP32-C6 strapping/boot pins (GPIO9 low at reset selects download mode) — only
-attach loads there that are guaranteed high-or-floating at reset.
+Spare pins for expansion: **GPIO8, GPIO9, EXIO1, EXIO4, EXIO5**. Note GPIO8/GPIO9
+are ESP32-C6 strapping/boot pins (GPIO9 low at reset selects download mode) — only
+attach loads there that are guaranteed high-or-floating at reset (GPIO8 also drives
+the module's onboard RGB LED). **GPIO22/GPIO23 are NOT spare**: they are the I2C
+bus (SDA/SCL) to the module's onboard TCA9554 expander that reads the NAV2/ADF1
+buttons and SW3 — leave them unconnected; only I2C slaves may ever attach there.
 
 **Encoder MHz B is on the TX pin (GPIO16) and the COM2 LED on RX (GPIO17)**, so
 the UART0 serial console is not available; use the ESP32-C6's native USB for
