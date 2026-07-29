@@ -173,28 +173,48 @@ engine's plain HTTP `GET /status` endpoint — no SDK required.
 
 You don't need a desktop environment — just a minimal surface for the webview.
 
-### Option A — `cage` (Wayland kiosk, recommended)
+### Option A — X11 kiosk (recommended on Raspberry Pi)
 
-`cage` is a single-app kiosk compositor that runs directly on DRM/KMS.
+On the Pi, **prefer X11 over Wayland/`cage`**: webkit2gtk under wlroots (cage)
+frequently mis-sizes the webview — the window is fullscreen but the page renders
+into a small ~800×600 area in a corner. Under X11 the webview fills correctly,
+and `unclutter` hides the mouse cursor.
 
 ```bash
-sudo apt install cage
+sudo apt install -y xserver-xorg xinit x11-xserver-utils unclutter matchbox-window-manager
+```
+
+Let the service start X — `/etc/X11/Xwrapper.config`:
+
+```
+allowed_users=anybody
+needs_root_rights=yes
+```
+
+`~/.xinitrc` (then `chmod +x ~/.xinitrc`):
+
+```sh
+#!/bin/sh
+xset s off -dpms
+xset s noblank
+unclutter -idle 0 -root &
+matchbox-window-manager -use_titlebar no &
+exec /home/pi/learsim-glass
 ```
 
 `/etc/systemd/system/learsim-glass.service`:
 
 ```ini
 [Unit]
-Description=learsim-glass kiosk
+Description=learsim-glass kiosk (X11)
 After=systemd-user-sessions.service
 
 [Service]
 User=pi
-# DRM/KMS seat access
-TTYPath=/dev/tty1
 PAMName=login
-Environment=XDG_RUNTIME_DIR=/run/user/1000
-ExecStart=/usr/bin/cage -- /home/pi/learsim-glass
+TTYPath=/dev/tty1
+StandardInput=tty
+ExecStart=/usr/bin/startx -- :0 vt1 -keeptty
 Restart=always
 
 [Install]
@@ -205,12 +225,21 @@ WantedBy=multi-user.target
 sudo systemctl enable --now learsim-glass
 ```
 
-### Option B — bare X11
+Boot must be to **console, not desktop** (`raspi-config` → Boot → Console) so
+tty1 is free.
+
+### Option B — `cage` (Wayland kiosk)
+
+Simpler to launch, but see the sizing caveat above — on several Pi/Mesa versions
+the webview does not fill the window under cage. Fine on a Pi 4/5 with current
+firmware; try Option A if you see corner-locked rendering.
 
 ```bash
-sudo apt install xserver-xorg xinit openbox
-# ~/.xinitrc:  exec /home/pi/learsim-glass
-startx
+sudo apt install cage
+# /etc/systemd/system/learsim-glass.service ExecStart:
+#   Environment=XDG_RUNTIME_DIR=/run/user/1000
+#   TTYPath=/dev/tty1 , PAMName=login
+#   ExecStart=/usr/bin/cage -- /home/pi/learsim-glass
 ```
 
 ### Building on a Raspberry Pi (`rustc` SIGSEGV)
