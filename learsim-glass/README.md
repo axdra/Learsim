@@ -275,6 +275,30 @@ artifact is just for reference.
 > QEMU step (`docker/setup-qemu-action`) with `docker run --platform linux/arm64
 > …` — same container, just emulated (slower).
 
+### Performance tuning on a Raspberry Pi
+
+Local views (standby/clock/testpattern) are light; a **glassout** view is a live
+video stream and is the heavy part. In order of impact:
+
+1. **Lower the glassout Target FPS** to 10–15 in the admin (default 30 is 3× the
+   decode load) — the single biggest win on a Pi 3.
+2. **Enable the GPU + memory** in `/boot/firmware/config.txt`, then reboot:
+   ```
+   dtoverlay=vc4-kms-v3d
+   gpu_mem=128
+   ```
+3. **Disable WebKit accelerated compositing** — usually much smoother on the
+   Pi's weak GL. Add to the systemd unit's `[Service]`:
+   ```ini
+   Environment=WEBKIT_DISABLE_COMPOSITING_MODE=1
+   ```
+   (Remove it if live glassout video specifically gets worse — it's a trade-off.)
+4. **Drop the output resolution** to the panel's native size (e.g.
+   `video=HDMI-A-1:1280x720@60`) if it's a small display — fewer pixels to push.
+
+A Pi 3 B is marginal for live panel video no matter what; a Pi 4/5 is strongly
+recommended for smooth glassout. The Pi 3 handles the local views fine.
+
 ### Raspberry Pi notes
 
 - **Two screens need two outputs.** A **Pi 4 (dual micro-HDMI) or Pi 5** can
