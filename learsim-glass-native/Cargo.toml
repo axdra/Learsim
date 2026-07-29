@@ -1,0 +1,36 @@
+[package]
+name = "learsim-glass-native"
+version = "0.1.0"
+description = "Native (no-webview) glass display client — renders glassout panels directly via SDL2/KMSDRM"
+edition = "2021"
+rust-version = "1.77"
+
+[[bin]]
+name = "learsim-glass-native"
+path = "src/main.rs"
+
+[dependencies]
+# Rendering: SDL2 with KMSDRM (runs on the bare console, no X/Wayland needed).
+sdl2 = { version = "0.37", features = ["ttf"] }
+
+# JPEG decode (pure Rust — no C toolchain needed to build).
+zune-jpeg = "0.4"
+
+# Async: control server + glassout WebSocket client.
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "time", "sync"] }
+tokio-tungstenite = "0.24"
+futures-util = "0.3"
+axum = "0.8"
+tower-http = { version = "0.6", features = ["cors"] }
+
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+url = "2"
+dirs = "5"
+chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
+hostname = "0.4"
+uuid = { version = "1", features = ["v4"] }
+
+[profile.release]
+opt-level = 3
+lto = "thin"

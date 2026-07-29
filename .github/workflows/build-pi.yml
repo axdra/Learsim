@@ -50,3 +50,31 @@ jobs:
             learsim-glass/src-tauri/target/release/learsim-glass
             learsim-glass/dist/**
           if-no-files-found: error
+
+  # Native (no-webview) client: renders glassout panels directly via SDL2/KMSDRM.
+  # Much lighter on the Pi than the webview build. Single self-contained binary.
+  native:
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build native client in Debian Bookworm container
+        run: |
+          docker run --rm -v "$PWD":/work -w /work/learsim-glass-native \
+            -e CARGO_TERM_COLOR=always debian:bookworm bash -euo pipefail -c '
+              export DEBIAN_FRONTEND=noninteractive
+              apt-get update
+              apt-get install -y --no-install-recommends \
+                ca-certificates curl git build-essential pkg-config \
+                libsdl2-dev libsdl2-ttf-dev
+              curl --proto "=https" --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal
+              . "$HOME/.cargo/env"
+              cargo build --release
+            '
+
+      - name: Upload native binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: learsim-glass-native-pi-arm64
+          path: learsim-glass-native/target/release/learsim-glass-native
+          if-no-files-found: error
