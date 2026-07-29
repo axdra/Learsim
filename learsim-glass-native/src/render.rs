@@ -134,6 +134,11 @@ pub fn run(
     let video = sdl.video()?;
     let ttf = sdl2::ttf::init().map_err(|e| e.to_string())?;
 
+    // Smooth (bilinear) texture scaling — without this, scaled text and panels
+    // use nearest-neighbour and look jagged/choppy. Must be set before any
+    // texture is created.
+    let _ = sdl2::hint::set("SDL_RENDER_SCALE_QUALITY", "linear");
+
     let window = video
         .window("learsim-glass", 1280, 720)
         .fullscreen_desktop()
@@ -152,9 +157,10 @@ pub fn run(
     let (out_w, out_h) = canvas.output_size()?;
 
     // Load a font (optional — glassout still works without one).
+    // Render glyphs large so most views downscale (crisp) rather than upscale.
     let font = FONT_PATHS
         .iter()
-        .find_map(|p| ttf.load_font(*p, 128).ok());
+        .find_map(|p| ttf.load_font(*p, 256).ok());
     if font.is_none() {
         eprintln!("[render] no system font found; text views will be blank. Install fonts-dejavu-core.");
     }
