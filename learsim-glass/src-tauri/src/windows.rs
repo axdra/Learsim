@@ -19,6 +19,10 @@ pub fn create_screen_window(app: &AppHandle, screen: &ScreenConfig) -> tauri::Re
         .title(format!("learsim-glass · {}", screen.name))
         .decorations(false)
         .resizable(false)
+        // Request fullscreen at build time — reliable across compositors, and
+        // notably on Wayland where calling set_fullscreen() after the window
+        // exists can be ignored (timing).
+        .fullscreen(true)
         // Capture the *real* app-document URL the first time it loads (never
         // the transient "about:blank"), so glassout screens can later navigate
         // back to a local view. Reading `window.url()` right after build would
@@ -38,22 +42,21 @@ pub fn create_screen_window(app: &AppHandle, screen: &ScreenConfig) -> tauri::Re
         })
         .build()?;
 
-    // Pin to the requested monitor, if any, before fullscreening.
+    // On a genuine multi-monitor setup, move the window onto its assigned
+    // monitor and re-assert fullscreen there. On a single display (the common
+    // Pi case) the builder's fullscreen already fills the screen, and we leave
+    // the position alone (Wayland/cage ignores it anyway).
     if let Some(monitor_idx) = screen.monitor {
         if let Ok(monitors) = window.available_monitors() {
-            if let Some(monitor) = monitors.get(monitor_idx) {
-                let pos = monitor.position();
-                let _ = window.set_position(PhysicalPosition {
-                    x: pos.x,
-                    y: pos.y,
-                });
+            if monitors.len() > 1 {
+                if let Some(monitor) = monitors.get(monitor_idx) {
+                    let pos = monitor.position();
+                    let _ = window.set_fullscreen(false);
+                    let _ = window.set_position(PhysicalPosition { x: pos.x, y: pos.y });
+                    let _ = window.set_fullscreen(true);
+                }
             }
         }
-    }
-
-    // Kiosk: fullscreen with no cursor chrome. Failure is non-fatal.
-    if let Err(err) = window.set_fullscreen(true) {
-        eprintln!("[windows] could not fullscreen '{}': {err}", screen.id);
     }
 
     Ok(())
