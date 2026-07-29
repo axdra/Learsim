@@ -25,6 +25,15 @@ use tauri::Manager;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
+    // On Linux, webkit2gtk's DMABUF renderer is broken on several GPUs
+    // (Raspberry Pi VideoCore, some Mesa/NVIDIA drivers) and renders the webview
+    // blank or into a corner of the window. Disable it unless the operator has
+    // set it explicitly. Must happen before GTK/WebKit initialise.
+    #[cfg(target_os = "linux")]
+    if std::env::var_os("WEBKIT_DISABLE_DMABUF_RENDERER").is_none() {
+        std::env::set_var("WEBKIT_DISABLE_DMABUF_RENDERER", "1");
+    }
+
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![commands::get_screen_state])
         .setup(|app| {
