@@ -700,7 +700,7 @@
         "uuid": "27520048-f2d9-41fa-a766-14782a208ac0"
       }
     ],
-    "used_designators": "DS1-2,U1-3,SW1-4,COM3-6,Switch1,#PWR1-10,D1-8,ADF1",
+    "used_designators": "U1-3,DS1-2,SW1-4,COM3-6,Switch1,D1-8,#PWR1-10,ADF1",
     "variants": []
   },
   "sheets": [

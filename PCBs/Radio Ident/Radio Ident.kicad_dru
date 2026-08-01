@@ -1,0 +1,9 @@
+(version 1)
+
+# The SK6812MINI-E reverse-mount footprints (D1-D6) contain their own
+# light-window cutouts on Edge.Cuts; their pads sit ~0.25 mm from that
+# window by design. Relax the copper-to-edge clearance for those
+# footprints only, keeping the board-wide 0.5 mm rule for everything else.
+(rule "SK6812 reverse-mount light window"
+	(constraint edge_clearance (min 0.2mm))
+	(condition "A.memberOfFootprint('D*')"))

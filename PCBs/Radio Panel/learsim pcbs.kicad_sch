@@ -3830,17 +3830,17 @@
 	)
 	(global_label "COM2_LED"
 		(shape bidirectional)
-		(at 76.2 92.71 90)
+		(at 76.2 92.71 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "006e1f9d-f7de-4e30-835c-47d7d40b87b7")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 84.2 92.71 0)
+			(at 62.4274 92.71 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3848,7 +3848,7 @@
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
 	)
@@ -6721,17 +6721,17 @@
 	)
 	(global_label "COM1_LED"
 		(shape bidirectional)
-		(at 60.96 92.71 90)
+		(at 60.96 92.71 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "9657adbe-1530-409d-bfcc-f22b1a82d316")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 68.96 92.71 0)
+			(at 47.1874 92.71 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6739,7 +6739,7 @@
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
 	)
@@ -9347,7 +9347,7 @@
 				)
 			)
 		)
-		(property "Footprint" "PCM_Switch_Keyboard_Cherry_MX:SW_Cherry_MX_PCB"
+		(property "Footprint" "PCM_Switch_Keyboard_Kailh:SW_Kailh_Choc_V2"
 			(at 161.29 52.07 0)
 			(hide yes)
 			(show_name no)
@@ -9947,7 +9947,7 @@
 				)
 			)
 		)
-		(property "Footprint" "PCM_Switch_Keyboard_Cherry_MX:SW_Cherry_MX_PCB"
+		(property "Footprint" "PCM_Switch_Keyboard_Kailh:SW_Kailh_Choc_V2"
 			(at 114.3 52.07 0)
 			(hide yes)
 			(show_name no)
@@ -10547,7 +10547,7 @@
 				)
 			)
 		)
-		(property "Footprint" "PCM_Switch_Keyboard_Cherry_MX:SW_Cherry_MX_PCB"
+		(property "Footprint" "PCM_Switch_Keyboard_Kailh:SW_Kailh_Choc_V2"
 			(at 144.78 52.07 0)
 			(hide yes)
 			(show_name no)
@@ -10875,7 +10875,7 @@
 				)
 			)
 		)
-		(property "Footprint" "PCM_Switch_Keyboard_Cherry_MX:SW_Cherry_MX_PCB"
+		(property "Footprint" "PCM_Switch_Keyboard_Kailh:SW_Kailh_Choc_V2"
 			(at 176.53 52.07 0)
 			(hide yes)
 			(show_name no)
@@ -13331,7 +13331,7 @@
 				)
 			)
 		)
-		(property "Footprint" "PCM_Switch_Keyboard_Cherry_MX:SW_Cherry_MX_PCB"
+		(property "Footprint" "PCM_Switch_Keyboard_Kailh:SW_Kailh_Choc_V2"
 			(at 191.77 52.07 0)
 			(hide yes)
 			(show_name no)
@@ -14285,7 +14285,7 @@
 				)
 			)
 		)
-		(property "Footprint" "PCM_Switch_Keyboard_Cherry_MX:SW_Cherry_MX_PCB"
+		(property "Footprint" "PCM_Switch_Keyboard_Kailh:SW_Kailh_Choc_V2"
 			(at 130.81 52.07 0)
 			(hide yes)
 			(show_name no)

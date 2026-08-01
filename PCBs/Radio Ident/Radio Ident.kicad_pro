@@ -39,9 +39,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 0.0,
-          "height": 0.82,
-          "width": 1.35
+          "drill": 0.8,
+          "height": 1.27,
+          "width": 1.27
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -78,12 +78,8 @@
       ],
       "drc_exclusions": [
         [
-          "lib_footprint_mismatch|129182500|69652500|fb019c6a-fe8f-473d-a1e7-153cf392fb76|00000000-0000-0000-0000-000000000000",
-          "Is edited"
-        ],
-        [
-          "lib_footprint_mismatch|97700000|69600000|d1539e28-a67e-4902-8594-15fdc0caf405|00000000-0000-0000-0000-000000000000",
-          "Is edited"
+          "lib_footprint_mismatch|136092000|91340500|e65b233e-dd72-4c24-a14e-8b66d6ae0ff0|00000000-0000-0000-0000-000000000000",
+          ""
         ]
       ],
       "meta": {
@@ -93,7 +89,7 @@
         "annular_width": "error",
         "clearance": "error",
         "connection_width": "warning",
-        "copper_edge_clearance": "ignore",
+        "copper_edge_clearance": "error",
         "copper_sliver": "warning",
         "courtyards_overlap": "error",
         "creepage": "error",
@@ -220,6 +216,11 @@
       ],
       "track_widths": [
         0.0,
+        0.2,
+        0.3,
+        0.4,
+        0.6,
+        0.8,
         1.2
       ],
       "tuning_pattern_settings": {
@@ -476,7 +477,6 @@
       "footprint_filter": "ignore",
       "footprint_link_issues": "warning",
       "four_way_junction": "ignore",
-      "global_label_dangling": "warning",
       "ground_pin_not_ground": "warning",
       "hier_label_mismatch": "error",
       "isolated_pin_label": "warning",
@@ -516,7 +516,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "learsim pcbs.kicad_pro",
+    "filename": "Radio Ident.kicad_pro",
     "version": 3
   },
   "net_settings": {
@@ -539,6 +539,21 @@
         "via_diameter": 0.6,
         "via_drill": 0.3,
         "wire_width": 6
+      },
+      {
+        "clearance": 0.2,
+        "diff_pair_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "Wide",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 0,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 1.2,
+        "tuning_profile": "",
+        "via_diameter": 0.8,
+        "via_drill": 0.4
       }
     ],
     "meta": {
@@ -546,18 +561,24 @@
     },
     "net_colors": null,
     "netclass_assignments": null,
-    "netclass_patterns": []
+    "netclass_patterns": [
+      {
+        "netclass": "Wide",
+        "pattern": "GND"
+      },
+      {
+        "netclass": "Wide",
+        "pattern": "*V"
+      }
+    ]
   },
   "pcbnew": {
     "last_paths": {
-      "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "radiopanelprod/",
-      "pos_files": "",
+      "plot": "",
       "specctra_dsn": "",
-      "step": "../../../../Downloads/learsim pcbs.step",
-      "svg": "",
+      "step": "",
       "vrml": ""
     },
     "page_layout_descr_file": ""
@@ -680,33 +701,25 @@
     "meta": {
       "version": 1
     },
-    "net_format_name": "",
     "page_layout_descr_file": "",
     "plot_directory": "",
     "reuse_designators": true,
-    "space_save_all_events": true,
-    "spice_current_sheet_as_root": false,
-    "spice_external_command": "spice \"%I\"",
-    "spice_model_current_sheet_as_root": true,
-    "spice_save_all_currents": false,
-    "spice_save_all_dissipations": false,
-    "spice_save_all_voltages": false,
     "subpart_first_id": 65,
     "subpart_id_separator": 0,
     "top_level_sheets": [
       {
-        "filename": "learsim pcbs.kicad_sch",
-        "name": "Root",
-        "uuid": "27520048-f2d9-41fa-a766-14782a208ac0"
+        "filename": "Radio Ident.kicad_sch",
+        "name": "Radio Ident",
+        "uuid": "3fbbaec7-91fc-4376-a753-0bcf49fd3ff9"
       }
     ],
-    "used_designators": "DS1-2,U1-3,SW1-4,COM3-6,Switch1,#PWR1-10,D1-8,ADF1",
+    "used_designators": "U1-3,SW1-6,D1-7,#PWR1-37,R7-14,C2-10",
     "variants": []
   },
   "sheets": [
     [
-      "27520048-f2d9-41fa-a766-14782a208ac0",
-      "Root"
+      "3fbbaec7-91fc-4376-a753-0bcf49fd3ff9",
+      "Radio Ident"
     ]
   ],
   "text_variables": {},
