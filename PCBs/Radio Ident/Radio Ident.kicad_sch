@@ -4759,7 +4759,7 @@
 				)
 			)
 		)
-		(property "Value" "D"
+		(property "Value" "1N5819"
 			(at 64.77 128.27 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4769,7 +4769,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal"
+		(property "Footprint" "Diode_THT:D_DO-41_SOD81_P7.62mm_Horizontal"
 			(at 64.77 132.08 0)
 			(hide yes)
 			(show_name no)
@@ -4814,6 +4814,17 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
+			(at 64.77 132.08 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C110032"
 			(at 64.77 132.08 0)
 			(hide yes)
 			(show_name no)

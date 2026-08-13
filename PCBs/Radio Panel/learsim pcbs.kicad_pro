@@ -220,6 +220,7 @@
       ],
       "track_widths": [
         0.0,
+        0.8,
         1.2
       ],
       "tuning_pattern_settings": {
@@ -267,7 +268,7 @@
       "internal_id": "",
       "mfg": "",
       "mpn": "",
-      "sch_revision": ""
+      "sch_revision": "Rev 1.0"
     },
     "layer_pairs": [],
     "layer_presets": [],
@@ -700,7 +701,7 @@
         "uuid": "27520048-f2d9-41fa-a766-14782a208ac0"
       }
     ],
-    "used_designators": "U1-3,DS1-2,SW1-4,COM3-6,Switch1,D1-8,#PWR1-10,ADF1",
+    "used_designators": "U1-4,DS1-2,SW1-4,COM3-6,Switch1,D1-9,#PWR1-12,#PWR27-30,#PWR33-34,#PWR36-37,ADF1,C19-20,R19-20",
     "variants": []
   },
   "sheets": [
